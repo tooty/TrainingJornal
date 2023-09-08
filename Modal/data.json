@@ -1,0 +1,1969 @@
+[
+  {
+    "weight": 40,
+    "day": 1693173600000,
+    "exerciseName": "Bankdrücken",
+    "reps": 10,
+    "id": 1693229307236
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "weight": 50,
+    "id": 1693229339988,
+    "day": 1693173600000,
+    "reps": 8
+  },
+  {
+    "weight": 50,
+    "exerciseName": "Bankdrücken",
+    "reps": 8,
+    "id": 1693229349338,
+    "day": 1693173600000
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "weight": 50,
+    "reps": 8,
+    "id": 1693229350051,
+    "day": 1693173600000
+  },
+  {
+    "id": 1693229369851,
+    "day": 1693173600000,
+    "exerciseName": "Hyperextention",
+    "reps": 12,
+    "weight": 10
+  },
+  {
+    "exerciseName": "Hyperextention",
+    "day": 1693173600000,
+    "weight": 10,
+    "reps": 12,
+    "id": 1693229379554
+  },
+  {
+    "exerciseName": "Hyperextention",
+    "reps": 12,
+    "day": 1693173600000,
+    "weight": 10,
+    "id": 1693229380134
+  },
+  {
+    "exerciseName": "Beinbeuger",
+    "weight": 15,
+    "day": 1693173600000,
+    "reps": 10,
+    "id": 1693229398932
+  },
+  {
+    "weight": 20,
+    "day": 1693173600000,
+    "id": 1693229406583,
+    "exerciseName": "Beinbeuger",
+    "reps": 10
+  },
+  {
+    "day": 1693173600000,
+    "exerciseName": "Beinbeuger",
+    "id": 1693229413834,
+    "weight": 20,
+    "reps": 12
+  },
+  {
+    "weight": 45,
+    "id": 1693229431950,
+    "reps": 12,
+    "exerciseName": "Lat Zug",
+    "day": 1693173600000
+  },
+  {
+    "reps": 12,
+    "exerciseName": "Lat Zug",
+    "id": 1693229443003,
+    "weight": 45,
+    "day": 1693173600000
+  },
+  {
+    "reps": 8,
+    "weight": 45,
+    "day": 1693173600000,
+    "id": 1693229452334,
+    "exerciseName": "Lat Zug"
+  },
+  {
+    "day": 1693173600000,
+    "weight": 18,
+    "id": 1693229472727,
+    "exerciseName": "Site crunch",
+    "reps": 12
+  },
+  {
+    "reps": 12,
+    "id": 1693229483884,
+    "day": 1693173600000,
+    "exerciseName": "Site crunch",
+    "weight": 18
+  },
+  {
+    "id": 1693229484516,
+    "day": 1693173600000,
+    "reps": 12,
+    "weight": 18,
+    "exerciseName": "Site crunch"
+  },
+  {
+    "weight": 10,
+    "day": 1693173600000,
+    "exerciseName": "Bizeps Maschine",
+    "reps": 10,
+    "id": 1693229525116
+  },
+  {
+    "weight": 10,
+    "exerciseName": "Bizeps Maschine",
+    "day": 1693173600000,
+    "id": 1693229534984,
+    "reps": 10
+  },
+  {
+    "weight": 10,
+    "exerciseName": "Bizeps Maschine",
+    "reps": 10,
+    "id": 1693229535883,
+    "day": 1693173600000
+  },
+  {
+    "reps": 7,
+    "exerciseName": "Kniebeuge",
+    "weight": 60,
+    "id": 1693066177904,
+    "day": 1693000800000
+  },
+  {
+    "reps": 5,
+    "weight": 80,
+    "id": 1693066473160,
+    "day": 1693000800000,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "weight": 90,
+    "id": 1693066721659,
+    "exerciseName": "Kniebeuge",
+    "day": 1693000800000,
+    "reps": 3
+  },
+  {
+    "day": 1693000800000,
+    "id": 1693066961494,
+    "exerciseName": "Kniebeuge",
+    "weight": 90,
+    "reps": 5
+  },
+  {
+    "id": 1693067181969,
+    "reps": 5,
+    "day": 1693000800000,
+    "weight": 80,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "day": 1693000800000,
+    "reps": 10,
+    "id": 1693067363505,
+    "weight": 40,
+    "exerciseName": "Schräkbankdrücken"
+  },
+  {
+    "id": 1693067517871,
+    "reps": 8,
+    "exerciseName": "Schräkbankdrücken",
+    "day": 1693000800000,
+    "weight": 50
+  },
+  {
+    "reps": 1,
+    "weight": 60,
+    "exerciseName": "Schräkbankdrücken",
+    "id": 1693067787001,
+    "day": 1693000800000
+  },
+  {
+    "id": 1693068089907,
+    "reps": 5,
+    "exerciseName": "Schräkbankdrücken",
+    "day": 1693000800000,
+    "weight": 50
+  },
+  {
+    "reps": 12,
+    "id": 1693068313575,
+    "exerciseName": "Rudern Kabel",
+    "weight": 35,
+    "day": 1693000800000
+  },
+  {
+    "weight": 45,
+    "reps": 12,
+    "id": 1693068422159,
+    "exerciseName": "Rudern Kabel",
+    "day": 1693000800000
+  },
+  {
+    "id": 1693068690950,
+    "weight": 55,
+    "reps": 12,
+    "day": 1693000800000,
+    "exerciseName": "Rudern Kabel"
+  },
+  {
+    "weight": 40,
+    "exerciseName": "Bankdrücken",
+    "reps": 10,
+    "id": 1692716838545,
+    "day": 1692655200000
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "day": 1692655200000,
+    "reps": 10,
+    "weight": 50,
+    "id": 1692716845400
+  },
+  {
+    "day": 1692655200000,
+    "id": 1692716951190,
+    "reps": 10,
+    "weight": 50,
+    "exerciseName": "Bankdrücken"
+  },
+  {
+    "exerciseName": "Rudern Maschine",
+    "id": 1692717784616,
+    "weight": 50,
+    "reps": 12,
+    "day": 1692655200000
+  },
+  {
+    "exerciseName": "Rudern Maschine",
+    "id": 1692717860894,
+    "reps": 12,
+    "day": 1692655200000,
+    "weight": 55
+  },
+  {
+    "weight": 55,
+    "day": 1692655200000,
+    "exerciseName": "Rudern Maschine",
+    "id": 1692718279518,
+    "reps": 10
+  },
+  {
+    "exerciseName": "Seitheben Kabel",
+    "id": 1692718930426,
+    "reps": 10,
+    "weight": 4,
+    "day": 1692655200000
+  },
+  {
+    "id": 1692718943516,
+    "day": 1692655200000,
+    "exerciseName": "Seitheben Kabel",
+    "weight": 4,
+    "reps": 7
+  },
+  {
+    "weight": 4,
+    "exerciseName": "Seitheben Kabel",
+    "reps": 12,
+    "day": 1692655200000,
+    "id": 1692718969063
+  },
+  {
+    "exerciseName": "Lat Zug",
+    "id": 1692719137929,
+    "day": 1692655200000,
+    "weight": 55,
+    "reps": 10
+  },
+  {
+    "day": 1692655200000,
+    "id": 1692719375546,
+    "weight": 55,
+    "reps": 10,
+    "exerciseName": "Lat Zug"
+  },
+  {
+    "exerciseName": "Lat Zug",
+    "day": 1692655200000,
+    "id": 1692719500189,
+    "reps": 12,
+    "weight": 35
+  },
+  {
+    "id": 1692719988547,
+    "exerciseName": "Beinstrecker",
+    "day": 1692655200000,
+    "weight": 25,
+    "reps": 12
+  },
+  {
+    "id": 1692720085967,
+    "reps": 12,
+    "weight": 35,
+    "day": 1692655200000,
+    "exerciseName": "Beinstrecker"
+  },
+  {
+    "day": 1692655200000,
+    "reps": 12,
+    "weight": 1,
+    "exerciseName": "Beinstrecker",
+    "id": 1692720333572
+  },
+  {
+    "weight": 15,
+    "exerciseName": "Hyperextention",
+    "day": 1692655200000,
+    "id": 1692720450651,
+    "reps": 12
+  },
+  {
+    "id": 1692720748017,
+    "weight": 15,
+    "reps": 12,
+    "day": 1692655200000,
+    "exerciseName": "Hyperextention"
+  },
+  {
+    "weight": 10,
+    "day": 1692655200000,
+    "exerciseName": "Trizeps Maschine",
+    "reps": 12,
+    "id": 1692720887587
+  },
+  {
+    "reps": 12,
+    "exerciseName": "Trizeps Maschine",
+    "weight": 20,
+    "id": 1692720892311,
+    "day": 1692655200000
+  },
+  {
+    "weight": 25,
+    "reps": 10,
+    "id": 1692721141879,
+    "exerciseName": "Trizeps Maschine",
+    "day": 1692655200000
+  },
+  {
+    "day": 1692655200000,
+    "exerciseName": "Bizeps Maschine",
+    "id": 1692721332071,
+    "weight": 15,
+    "reps": 10
+  },
+  {
+    "id": 1692721385428,
+    "day": 1692655200000,
+    "weight": 1,
+    "reps": 10,
+    "exerciseName": "Bizeps Maschine"
+  },
+  {
+    "reps": 10,
+    "id": 1692721450435,
+    "weight": 10,
+    "exerciseName": "Bizeps Maschine",
+    "day": 1692655200000
+  },
+  {
+    "exerciseName": "Bizeps Maschine",
+    "reps": 10,
+    "day": 1692655200000,
+    "weight": 5,
+    "id": 1692721454010
+  },
+  {
+    "day": 1692050400000,
+    "exerciseName": "Schulter drücken ",
+    "id": 1692108006577,
+    "weight": 10,
+    "reps": 12
+  },
+  {
+    "exerciseName": "Schulter drücken ",
+    "reps": 12,
+    "weight": 10,
+    "id": 1692108356275,
+    "day": 1692050400000
+  },
+  {
+    "day": 1692050400000,
+    "exerciseName": "Schulter drücken ",
+    "id": 1692108360529,
+    "weight": 10,
+    "reps": 15
+  },
+  {
+    "reps": 12,
+    "day": 1692050400000,
+    "id": 1692108381721,
+    "weight": 90,
+    "exerciseName": "Beinpresse"
+  },
+  {
+    "day": 1692050400000,
+    "id": 1692108454400,
+    "reps": 12,
+    "exerciseName": "Beinpresse",
+    "weight": 110
+  },
+  {
+    "day": 1692050400000,
+    "reps": 12,
+    "weight": 130,
+    "id": 1692108640539,
+    "exerciseName": "Beinpresse"
+  },
+  {
+    "weight": 40,
+    "day": 1692050400000,
+    "reps": 12,
+    "exerciseName": "Bankdrücken",
+    "id": 1692712924339
+  },
+  {
+    "weight": 40,
+    "exerciseName": "Bankdrücken",
+    "reps": 10,
+    "id": 1692712932679,
+    "day": 1692050400000
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "weight": 55,
+    "day": 1692050400000,
+    "id": 1692712939785,
+    "reps": 5
+  },
+  {
+    "id": 1692712965663,
+    "exerciseName": "Crunches schräg",
+    "reps": 12,
+    "day": 1692050400000,
+    "weight": 10
+  },
+  {
+    "id": 1692712973310,
+    "reps": 12,
+    "weight": 10,
+    "day": 1692050400000,
+    "exerciseName": "Crunches schräg"
+  },
+  {
+    "day": 1692050400000,
+    "exerciseName": "Crunches schräg",
+    "weight": 10,
+    "reps": 12,
+    "id": 1692712974176
+  },
+  {
+    "reps": 12,
+    "weight": 15,
+    "id": 1692712994693,
+    "day": 1692050400000,
+    "exerciseName": "Bizepscurls"
+  },
+  {
+    "reps": 12,
+    "day": 1692050400000,
+    "weight": 15,
+    "exerciseName": "Bizepscurls",
+    "id": 1692713001005
+  },
+  {
+    "day": 1692050400000,
+    "weight": 15,
+    "id": 1692713005290,
+    "exerciseName": "Bizepscurls",
+    "reps": 12
+  },
+  {
+    "id": 3569,
+    "reps": 10,
+    "exerciseName": "Kniebeuge",
+    "weight": 20,
+    "day": 1691445600000
+  },
+  {
+    "reps": 5,
+    "id": 71211,
+    "day": 1691445600000,
+    "exerciseName": "Kniebeuge",
+    "weight": 60
+  },
+  {
+    "id": 13843,
+    "exerciseName": "Kniebeuge",
+    "day": 1691445600000,
+    "reps": 5,
+    "weight": 80
+  },
+  {
+    "exerciseName": "Kniebeuge",
+    "weight": 90,
+    "day": 1691445600000,
+    "reps": 5,
+    "id": 79845
+  },
+  {
+    "weight": 90,
+    "exerciseName": "Kniebeuge",
+    "reps": 5,
+    "day": 1691445600000,
+    "id": 17199
+  },
+  {
+    "exerciseName": "Kniebeuge",
+    "reps": 5,
+    "weight": 90,
+    "day": 1691445600000,
+    "id": 26222
+  },
+  {
+    "weight": 40,
+    "reps": 10,
+    "day": 1691445600000,
+    "exerciseName": "Bankdrücken negativ",
+    "id": 91095
+  },
+  {
+    "reps": 10,
+    "day": 1691445600000,
+    "id": 52173,
+    "weight": 30,
+    "exerciseName": "Bankdrücken negativ"
+  },
+  {
+    "day": 1691445600000,
+    "exerciseName": "Bankdrücken negativ",
+    "reps": 10,
+    "id": 12275,
+    "weight": 50
+  },
+  {
+    "day": 1691445600000,
+    "weight": 60,
+    "id": 21179,
+    "reps": 5,
+    "exerciseName": "Bankdrücken negativ"
+  },
+  {
+    "weight": 40,
+    "id": 88932,
+    "day": 1691445600000,
+    "exerciseName": "Langhantel Rudern",
+    "reps": 10
+  },
+  {
+    "day": 1691445600000,
+    "id": 95479,
+    "weight": 50,
+    "exerciseName": "Langhantel Rudern",
+    "reps": 10
+  },
+  {
+    "day": 1691445600000,
+    "reps": 7,
+    "exerciseName": "Langhantel Rudern",
+    "weight": 60,
+    "id": 306
+  },
+  {
+    "id": 42863,
+    "reps": 10,
+    "exerciseName": "Langhantel Rudern",
+    "weight": 50,
+    "day": 1691445600000
+  },
+  {
+    "exerciseName": "Hyperextention",
+    "day": 1691445600000,
+    "weight": 15,
+    "reps": 12,
+    "id": 28858
+  },
+  {
+    "day": 1691445600000,
+    "id": 10886,
+    "reps": 12,
+    "weight": 15,
+    "exerciseName": "Hyperextention"
+  },
+  {
+    "reps": 12,
+    "id": 42819,
+    "day": 1691445600000,
+    "exerciseName": "Hyperextention",
+    "weight": 15
+  },
+  {
+    "weight": 30,
+    "id": 64980,
+    "exerciseName": "Beinstrecker",
+    "reps": 15,
+    "day": 1691445600000
+  },
+  {
+    "exerciseName": "Beinstrecker",
+    "reps": 12,
+    "day": 1691445600000,
+    "id": 81539,
+    "weight": 40
+  },
+  {
+    "weight": 45,
+    "id": 85813,
+    "exerciseName": "Beinstrecker",
+    "reps": 12,
+    "day": 1691445600000
+  },
+  {
+    "weight": 40,
+    "day": 1691013600000,
+    "reps": 10,
+    "exerciseName": "Schräkbankdrücken",
+    "id": 20891
+  },
+  {
+    "id": 30523,
+    "exerciseName": "Schräkbankdrücken",
+    "weight": 50,
+    "day": 1691013600000,
+    "reps": 5
+  },
+  {
+    "id": 19054,
+    "reps": 5,
+    "weight": 50,
+    "day": 1691013600000,
+    "exerciseName": "Schräkbankdrücken"
+  },
+  {
+    "reps": 5,
+    "weight": 50,
+    "id": 99019,
+    "day": 1691013600000,
+    "exerciseName": "Schräkbankdrücken"
+  },
+  {
+    "reps": 12,
+    "exerciseName": "Rudern Maschine",
+    "day": 1691013600000,
+    "weight": 47,
+    "id": 356
+  },
+  {
+    "day": 1691013600000,
+    "id": 5769,
+    "weight": 55,
+    "reps": 10,
+    "exerciseName": "Rudern Maschine"
+  },
+  {
+    "day": 1691013600000,
+    "exerciseName": "Rudern Maschine",
+    "id": 19847,
+    "reps": 12,
+    "weight": 45
+  },
+  {
+    "reps": 15,
+    "exerciseName": "Trizeps Kabel",
+    "day": 1691013600000,
+    "id": 39834,
+    "weight": 12
+  },
+  {
+    "id": 83949,
+    "reps": 12,
+    "day": 1691013600000,
+    "weight": 17,
+    "exerciseName": "Trizeps Kabel"
+  },
+  {
+    "exerciseName": "Trizeps Kabel",
+    "reps": 7,
+    "id": 14945,
+    "day": 1691013600000,
+    "weight": 17
+  },
+  {
+    "day": 1691013600000,
+    "weight": 10,
+    "exerciseName": "Hammer Curls",
+    "reps": 10,
+    "id": 96793
+  },
+  {
+    "id": 14028,
+    "day": 1691013600000,
+    "weight": 10,
+    "reps": 7,
+    "exerciseName": "Hammer Curls"
+  },
+  {
+    "weight": 10,
+    "day": 1691013600000,
+    "id": 98145,
+    "exerciseName": "Hammer Curls",
+    "reps": 7
+  },
+  {
+    "exerciseName": "Crunches schräg",
+    "weight": 10,
+    "reps": 15,
+    "id": 91993,
+    "day": 1691013600000
+  },
+  {
+    "exerciseName": "Crunches schräg",
+    "id": 4397,
+    "weight": 10,
+    "day": 1691013600000,
+    "reps": 15
+  },
+  {
+    "exerciseName": "Crunches schräg",
+    "id": 94231,
+    "reps": 15,
+    "day": 1691013600000,
+    "weight": 10
+  },
+  {
+    "reps": 12,
+    "id": 32372,
+    "day": 1691013600000,
+    "weight": 20,
+    "exerciseName": "Beinbeuger"
+  },
+  {
+    "reps": 12,
+    "id": 8452,
+    "exerciseName": "Beinbeuger",
+    "weight": 20,
+    "day": 1691013600000
+  },
+  {
+    "id": 28095,
+    "weight": 20,
+    "reps": 12,
+    "day": 1691013600000,
+    "exerciseName": "Beinbeuger"
+  },
+  {
+    "day": 1690754400000,
+    "exerciseName": "Bankdrücken",
+    "reps": 10,
+    "weight": 40,
+    "id": 98253
+  },
+  {
+    "weight": 50,
+    "day": 1690754400000,
+    "id": 32090,
+    "reps": 7,
+    "exerciseName": "Bankdrücken"
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "day": 1690754400000,
+    "reps": 3,
+    "weight": 60,
+    "id": 45737
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "weight": 50,
+    "reps": 7,
+    "day": 1690754400000,
+    "id": 27140
+  },
+  {
+    "reps": 10,
+    "day": 1690754400000,
+    "exerciseName": "Kniebeuge",
+    "weight": 60,
+    "id": 12180
+  },
+  {
+    "exerciseName": "Kniebeuge",
+    "day": 1690754400000,
+    "id": 15386,
+    "weight": 70,
+    "reps": 10
+  },
+  {
+    "exerciseName": "Kniebeuge",
+    "id": 80188,
+    "weight": 80,
+    "reps": 5,
+    "day": 1690754400000
+  },
+  {
+    "weight": 80,
+    "exerciseName": "Kniebeuge",
+    "reps": 5,
+    "day": 1690754400000,
+    "id": 66407
+  },
+  {
+    "weight": 25,
+    "id": 24911,
+    "day": 1690754400000,
+    "reps": 12,
+    "exerciseName": "Seitheben Maschine"
+  },
+  {
+    "id": 78003,
+    "reps": 12,
+    "day": 1690754400000,
+    "exerciseName": "Seitheben Maschine",
+    "weight": 30
+  },
+  {
+    "day": 1690754400000,
+    "id": 11509,
+    "weight": 30,
+    "exerciseName": "Seitheben Maschine",
+    "reps": 10
+  },
+  {
+    "weight": 10,
+    "id": 95987,
+    "exerciseName": "Schulter drücken ",
+    "day": 1690754400000,
+    "reps": 12
+  },
+  {
+    "weight": 10,
+    "day": 1690754400000,
+    "exerciseName": "Schulter drücken ",
+    "id": 74586,
+    "reps": 12
+  },
+  {
+    "id": 85461,
+    "reps": 12,
+    "weight": 12,
+    "exerciseName": "Schulter drücken ",
+    "day": 1690754400000
+  },
+  {
+    "exerciseName": "Crunches schräg",
+    "reps": 12,
+    "id": 36938,
+    "day": 1690754400000,
+    "weight": 0
+  },
+  {
+    "reps": 12,
+    "exerciseName": "Crunches schräg",
+    "day": 1690754400000,
+    "weight": 5,
+    "id": 37061
+  },
+  {
+    "reps": 12,
+    "day": 1690754400000,
+    "weight": 5,
+    "id": 15996,
+    "exerciseName": "Crunches schräg"
+  },
+  {
+    "reps": 12,
+    "weight": 50,
+    "day": 1690754400000,
+    "exerciseName": "Lat Zug",
+    "id": 53610
+  },
+  {
+    "reps": 12,
+    "day": 1690754400000,
+    "exerciseName": "Lat Zug",
+    "id": 80364,
+    "weight": 55
+  },
+  {
+    "exerciseName": "Lat Zug",
+    "weight": 55,
+    "id": 11343,
+    "reps": 12,
+    "day": 1690754400000
+  },
+  {
+    "id": 15354,
+    "reps": 10,
+    "weight": 17,
+    "day": 1690754400000,
+    "exerciseName": "Bizepscurls"
+  },
+  {
+    "day": 1690754400000,
+    "reps": 4,
+    "id": 45505,
+    "exerciseName": "Bizepscurls",
+    "weight": 20
+  },
+  {
+    "id": 45819,
+    "exerciseName": "Bizepscurls",
+    "day": 1690754400000,
+    "reps": 7,
+    "weight": 15
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "day": 1690243200000,
+    "id": 89640,
+    "weight": 40,
+    "reps": 12
+  },
+  {
+    "weight": 50,
+    "day": 1690243200000,
+    "reps": 8,
+    "exerciseName": "Bankdrücken",
+    "id": 69821
+  },
+  {
+    "reps": 8,
+    "id": 34600,
+    "day": 1690243200000,
+    "exerciseName": "Bankdrücken",
+    "weight": 50
+  },
+  {
+    "reps": 9,
+    "id": 25304,
+    "weight": 50,
+    "day": 1690243200000,
+    "exerciseName": "Bankdrücken"
+  },
+  {
+    "exerciseName": "Kniebeuge",
+    "id": 76479,
+    "weight": 60,
+    "reps": 5,
+    "day": 1690243200000
+  },
+  {
+    "id": 14741,
+    "weight": 80,
+    "exerciseName": "Kniebeuge",
+    "reps": 5,
+    "day": 1690243200000
+  },
+  {
+    "reps": 5,
+    "id": 84040,
+    "exerciseName": "Kniebeuge",
+    "day": 1690243200000,
+    "weight": 80
+  },
+  {
+    "weight": 80,
+    "day": 1690243200000,
+    "id": 55161,
+    "exerciseName": "Kniebeuge",
+    "reps": 5
+  },
+  {
+    "id": 32803,
+    "exerciseName": "Kniebeuge",
+    "weight": 80,
+    "reps": 5,
+    "day": 1690243200000
+  },
+  {
+    "day": 1690243200000,
+    "weight": 30,
+    "id": 76279,
+    "exerciseName": "Rudern Maschine",
+    "reps": 12
+  },
+  {
+    "id": 62487,
+    "weight": 45,
+    "exerciseName": "Rudern Maschine",
+    "reps": 12,
+    "day": 1690243200000
+  },
+  {
+    "weight": 50,
+    "exerciseName": "Rudern Maschine",
+    "day": 1690243200000,
+    "id": 81632,
+    "reps": 12
+  },
+  {
+    "weight": 50,
+    "exerciseName": "Rudern Maschine",
+    "day": 1690243200000,
+    "reps": 12,
+    "id": 53884
+  },
+  {
+    "weight": 40,
+    "reps": 15,
+    "exerciseName": "Rudern Maschine",
+    "id": 14881,
+    "day": 1690243200000
+  },
+  {
+    "reps": 12,
+    "weight": 5,
+    "day": 1690243200000,
+    "exerciseName": "Revers fly",
+    "id": 48858
+  },
+  {
+    "weight": 10,
+    "id": 43464,
+    "day": 1690243200000,
+    "reps": 10,
+    "exerciseName": "Revers fly"
+  },
+  {
+    "day": 1690243200000,
+    "reps": 9,
+    "exerciseName": "Revers fly",
+    "id": 32305,
+    "weight": 10
+  },
+  {
+    "day": 1690243200000,
+    "weight": 55,
+    "id": 58590,
+    "reps": 12,
+    "exerciseName": "Lat Zug"
+  },
+  {
+    "id": 93602,
+    "weight": 50,
+    "reps": 12,
+    "day": 1690243200000,
+    "exerciseName": "Lat Zug"
+  },
+  {
+    "exerciseName": "Lat Zug",
+    "reps": 12,
+    "day": 1689984000000,
+    "id": 2620,
+    "weight": 55
+  },
+  {
+    "day": 1689984000000,
+    "exerciseName": "Lat Zug",
+    "reps": 12,
+    "id": 63049,
+    "weight": 55
+  },
+  {
+    "id": 12374,
+    "day": 1689984000000,
+    "weight": 55,
+    "exerciseName": "Lat Zug",
+    "reps": 12
+  },
+  {
+    "day": 1689984000000,
+    "id": 75254,
+    "exerciseName": "Lat Zug",
+    "reps": 12,
+    "weight": 55
+  },
+  {
+    "exerciseName": "Schräkbankdrücken",
+    "reps": 12,
+    "weight": 40,
+    "day": 1689984000000,
+    "id": 89690
+  },
+  {
+    "day": 1689984000000,
+    "id": 72510,
+    "weight": 50,
+    "exerciseName": "Schräkbankdrücken",
+    "reps": 8
+  },
+  {
+    "exerciseName": "Schräkbankdrücken",
+    "reps": 10,
+    "day": 1689984000000,
+    "weight": 50,
+    "id": 98257
+  },
+  {
+    "day": 1689984000000,
+    "reps": 12,
+    "id": 2152,
+    "exerciseName": "Seitheben Maschine",
+    "weight": 15
+  },
+  {
+    "exerciseName": "Seitheben Maschine",
+    "day": 1689984000000,
+    "reps": 10,
+    "id": 34553,
+    "weight": 25
+  },
+  {
+    "id": 57966,
+    "reps": 10,
+    "weight": 25,
+    "day": 1689984000000,
+    "exerciseName": "Seitheben Maschine"
+  },
+  {
+    "exerciseName": "Schulter drücken ",
+    "day": 1689984000000,
+    "id": 64112,
+    "weight": 10,
+    "reps": 12
+  },
+  {
+    "reps": 12,
+    "weight": 10,
+    "day": 1689984000000,
+    "id": 11357,
+    "exerciseName": "Schulter drücken "
+  },
+  {
+    "day": 1689984000000,
+    "exerciseName": "Schulter drücken ",
+    "id": 53364,
+    "reps": 15,
+    "weight": 10
+  },
+  {
+    "day": 1689984000000,
+    "id": 83890,
+    "reps": 12,
+    "weight": 10,
+    "exerciseName": "Site crunch"
+  },
+  {
+    "day": 1689984000000,
+    "weight": 15,
+    "exerciseName": "Site crunch",
+    "reps": 12,
+    "id": 16652
+  },
+  {
+    "exerciseName": "Site crunch",
+    "weight": 15,
+    "reps": 12,
+    "day": 1689984000000,
+    "id": 96777
+  },
+  {
+    "exerciseName": "Site crunch",
+    "weight": 15,
+    "reps": 12,
+    "day": 1689984000000,
+    "id": 22175
+  },
+  {
+    "id": 22474,
+    "exerciseName": "Hyperextention",
+    "day": 1689984000000,
+    "reps": 12,
+    "weight": 10
+  },
+  {
+    "id": 85520,
+    "day": 1689984000000,
+    "weight": 10,
+    "reps": 15,
+    "exerciseName": "Hyperextention"
+  },
+  {
+    "exerciseName": "Hyperextention",
+    "day": 1689984000000,
+    "reps": 15,
+    "weight": 10,
+    "id": 46844
+  },
+  {
+    "id": 70085,
+    "exerciseName": "Wade heben",
+    "day": 1689984000000,
+    "reps": 12,
+    "weight": 75
+  },
+  {
+    "reps": 12,
+    "weight": 75,
+    "id": 19586,
+    "day": 1689984000000,
+    "exerciseName": "Wade heben"
+  },
+  {
+    "day": 1689984000000,
+    "weight": 75,
+    "exerciseName": "Wade heben",
+    "id": 54570,
+    "reps": 12
+  },
+  {
+    "weight": 50,
+    "reps": 5,
+    "day": 1689811200000,
+    "exerciseName": "Kniebeuge",
+    "id": 28868
+  },
+  {
+    "reps": 7,
+    "exerciseName": "Kniebeuge",
+    "day": 1689811200000,
+    "id": 10163,
+    "weight": 60
+  },
+  {
+    "id": 47150,
+    "exerciseName": "Kniebeuge",
+    "weight": 80,
+    "reps": 5,
+    "day": 1689811200000
+  },
+  {
+    "id": 79641,
+    "day": 1689811200000,
+    "weight": 80,
+    "reps": 5,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "reps": 5,
+    "day": 1689811200000,
+    "exerciseName": "Kniebeuge",
+    "weight": 80,
+    "id": 78112
+  },
+  {
+    "reps": 12,
+    "day": 1689811200000,
+    "exerciseName": "Langhantel Rudern",
+    "weight": 40,
+    "id": 66967
+  },
+  {
+    "day": 1689811200000,
+    "weight": 50,
+    "reps": 12,
+    "exerciseName": "Langhantel Rudern",
+    "id": 9612
+  },
+  {
+    "reps": 12,
+    "day": 1689811200000,
+    "id": 95426,
+    "weight": 50,
+    "exerciseName": "Langhantel Rudern"
+  },
+  {
+    "weight": 50,
+    "reps": 12,
+    "id": 41831,
+    "exerciseName": "Langhantel Rudern",
+    "day": 1689811200000
+  },
+  {
+    "id": 60461,
+    "weight": 15,
+    "exerciseName": "Triceps overhead",
+    "reps": 12,
+    "day": 1689811200000
+  },
+  {
+    "day": 1689811200000,
+    "weight": 18,
+    "id": 81637,
+    "exerciseName": "Triceps overhead",
+    "reps": 12
+  },
+  {
+    "day": 1689811200000,
+    "id": 61759,
+    "weight": 18,
+    "exerciseName": "Triceps overhead",
+    "reps": 12
+  },
+  {
+    "id": 77783,
+    "weight": 18,
+    "exerciseName": "Triceps overhead",
+    "day": 1689811200000,
+    "reps": 12
+  },
+  {
+    "id": 74874,
+    "reps": 12,
+    "weight": 20,
+    "day": 1689811200000,
+    "exerciseName": "Rudern Maschine"
+  },
+  {
+    "id": 2082,
+    "exerciseName": "Rudern Maschine",
+    "reps": 12,
+    "day": 1689811200000,
+    "weight": 35
+  },
+  {
+    "id": 16396,
+    "reps": 12,
+    "day": 1689811200000,
+    "exerciseName": "Rudern Maschine",
+    "weight": 40
+  },
+  {
+    "id": 2614,
+    "exerciseName": "Rudern Maschine",
+    "reps": 12,
+    "day": 1689811200000,
+    "weight": 40
+  },
+  {
+    "id": 50305,
+    "day": 1689811200000,
+    "reps": 12,
+    "weight": 45,
+    "exerciseName": "Rudern Maschine"
+  },
+  {
+    "reps": 12,
+    "day": 1689552000000,
+    "weight": 47,
+    "exerciseName": "Lat Zug",
+    "id": 8241
+  },
+  {
+    "exerciseName": "Lat Zug",
+    "reps": 12,
+    "weight": 47,
+    "day": 1689552000000,
+    "id": 47500
+  },
+  {
+    "weight": 47,
+    "reps": 7,
+    "id": 38363,
+    "exerciseName": "Lat Zug",
+    "day": 1689552000000
+  },
+  {
+    "reps": 12,
+    "weight": 35,
+    "exerciseName": "Lat Zug",
+    "id": 44837,
+    "day": 1689552000000
+  },
+  {
+    "id": 62740,
+    "reps": 12,
+    "weight": 40,
+    "day": 1689552000000,
+    "exerciseName": "Bankdrücken"
+  },
+  {
+    "id": 23165,
+    "reps": 12,
+    "exerciseName": "Bankdrücken",
+    "weight": 40,
+    "day": 1689552000000
+  },
+  {
+    "exerciseName": "Bankdrücken",
+    "reps": 12,
+    "weight": 40,
+    "day": 1689552000000,
+    "id": 12921
+  },
+  {
+    "id": 47853,
+    "exerciseName": "Seitheben Kabel",
+    "reps": 12,
+    "weight": 1,
+    "day": 1689552000000
+  },
+  {
+    "id": 79110,
+    "reps": 12,
+    "weight": 1,
+    "exerciseName": "Seitheben Kabel",
+    "day": 1689552000000
+  },
+  {
+    "reps": 12,
+    "day": 1689552000000,
+    "exerciseName": "Seitheben Kabel",
+    "id": 67599,
+    "weight": 1
+  },
+  {
+    "exerciseName": "Schulter lateral Kabel",
+    "day": 1689552000000,
+    "id": 77714,
+    "reps": 12,
+    "weight": 1
+  },
+  {
+    "exerciseName": "Schulter lateral Kabel",
+    "weight": 1,
+    "day": 1689552000000,
+    "reps": 12,
+    "id": 3547
+  },
+  {
+    "reps": 12,
+    "day": 1689552000000,
+    "exerciseName": "Schulter lateral Kabel",
+    "weight": 1,
+    "id": 54004
+  },
+  {
+    "id": 8488,
+    "exerciseName": "Crunches",
+    "weight": 20,
+    "reps": 12,
+    "day": 1689552000000
+  },
+  {
+    "day": 1689552000000,
+    "exerciseName": "Crunches",
+    "id": 33752,
+    "reps": 12,
+    "weight": 20
+  },
+  {
+    "reps": 12,
+    "weight": 20,
+    "day": 1689552000000,
+    "id": 52226,
+    "exerciseName": "Crunches"
+  },
+  {
+    "id": 70579,
+    "reps": 12,
+    "day": 1689552000000,
+    "exerciseName": "Langhantel Rudern",
+    "weight": 40
+  },
+  {
+    "day": 1689552000000,
+    "id": 42602,
+    "weight": 40,
+    "reps": 12,
+    "exerciseName": "Langhantel Rudern"
+  },
+  {
+    "reps": 12,
+    "exerciseName": "Langhantel Rudern",
+    "day": 1689552000000,
+    "id": 68483,
+    "weight": 40
+  },
+  {
+    "id": 68811,
+    "weight": 60,
+    "day": 1689292800000,
+    "reps": 10,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "weight": 80,
+    "reps": 5,
+    "id": 85708,
+    "day": 1689292800000,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "day": 1689292800000,
+    "weight": 80,
+    "id": 58532,
+    "reps": 5,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "weight": 40,
+    "reps": 7,
+    "day": 1689292800000,
+    "id": 86685,
+    "exerciseName": "Schräkbankdrücken"
+  },
+  {
+    "id": 51484,
+    "day": 1689292800000,
+    "reps": 7,
+    "exerciseName": "Schräkbankdrücken",
+    "weight": 40
+  },
+  {
+    "exerciseName": "Schräkbankdrücken",
+    "day": 1689292800000,
+    "id": 48402,
+    "reps": 7,
+    "weight": 40
+  },
+  {
+    "id": 28436,
+    "weight": 40,
+    "exerciseName": "Schräkbankdrücken",
+    "day": 1689292800000,
+    "reps": 7
+  },
+  {
+    "weight": 10,
+    "id": 79872,
+    "reps": 15,
+    "exerciseName": "Bizepscurls",
+    "day": 1689292800000
+  },
+  {
+    "id": 87812,
+    "exerciseName": "Bizepscurls",
+    "reps": 15,
+    "weight": 10,
+    "day": 1689292800000
+  },
+  {
+    "reps": 15,
+    "weight": 10,
+    "exerciseName": "Bizepscurls",
+    "id": 39756,
+    "day": 1689292800000
+  },
+  {
+    "exerciseName": "Langhantel Rudern",
+    "reps": 12,
+    "weight": 50,
+    "id": 39898,
+    "day": 1687737600000
+  },
+  {
+    "reps": 9,
+    "id": 48593,
+    "exerciseName": "Schräkbankdrücken",
+    "day": 1687737600000,
+    "weight": 40
+  },
+  {
+    "exerciseName": "Schräkbankdrücken",
+    "reps": 10,
+    "id": 69293,
+    "weight": 40,
+    "day": 1687737600000
+  },
+  {
+    "id": 3785,
+    "weight": 40,
+    "exerciseName": "Schräkbankdrücken",
+    "reps": 10,
+    "day": 1687737600000
+  },
+  {
+    "weight": 40,
+    "reps": 12,
+    "day": 1687737600000,
+    "id": 54238,
+    "exerciseName": "Lat Zug"
+  },
+  {
+    "id": 7240,
+    "weight": 45,
+    "exerciseName": "Lat Zug",
+    "reps": 12,
+    "day": 1687737600000
+  },
+  {
+    "exerciseName": "Lat Zug",
+    "reps": 12,
+    "id": 67966,
+    "day": 1687737600000,
+    "weight": 45
+  },
+  {
+    "id": 86266,
+    "day": 1687737600000,
+    "weight": 27,
+    "reps": 12,
+    "exerciseName": "Seitheben Maschine"
+  },
+  {
+    "reps": 12,
+    "weight": 27,
+    "day": 1687737600000,
+    "exerciseName": "Seitheben Maschine",
+    "id": 30555
+  },
+  {
+    "reps": 10,
+    "id": 14818,
+    "day": 1687737600000,
+    "weight": 20,
+    "exerciseName": "Seitheben Maschine"
+  },
+  {
+    "exerciseName": "Kniebeugen forne",
+    "id": 25342,
+    "reps": 5,
+    "weight": 50,
+    "day": 1687478400000
+  },
+  {
+    "weight": 60,
+    "exerciseName": "Kniebeugen forne",
+    "id": 94823,
+    "reps": 7,
+    "day": 1687478400000
+  },
+  {
+    "id": 20555,
+    "reps": 5,
+    "exerciseName": "Kniebeugen forne",
+    "day": 1687478400000,
+    "weight": 70
+  },
+  {
+    "exerciseName": "Kniebeuge",
+    "id": 11169,
+    "day": 1687478400000,
+    "reps": 5,
+    "weight": 70
+  },
+  {
+    "weight": 80,
+    "id": 29177,
+    "exerciseName": "Kniebeuge",
+    "reps": 5,
+    "day": 1687478400000
+  },
+  {
+    "id": 89876,
+    "day": 1687478400000,
+    "reps": 5,
+    "exerciseName": "Kniebeuge",
+    "weight": 90
+  },
+  {
+    "weight": 90,
+    "day": 1687478400000,
+    "exerciseName": "Kniebeuge",
+    "reps": 5,
+    "id": 80582
+  },
+  {
+    "id": 8610,
+    "reps": 5,
+    "weight": 20,
+    "exerciseName": "Bankdrücken",
+    "day": 1687478400000
+  },
+  {
+    "id": 19617,
+    "weight": 30,
+    "exerciseName": "Bankdrücken",
+    "day": 1687478400000,
+    "reps": 7
+  },
+  {
+    "day": 1687478400000,
+    "reps": 5,
+    "weight": 40,
+    "id": 94978,
+    "exerciseName": "Bankdrücken"
+  },
+  {
+    "day": 1687478400000,
+    "exerciseName": "Bankdrücken",
+    "weight": 50,
+    "id": 88032,
+    "reps": 5
+  },
+  {
+    "day": 1687478400000,
+    "exerciseName": "Bankdrücken",
+    "weight": 60,
+    "id": 41468,
+    "reps": 3
+  },
+  {
+    "reps": 5,
+    "id": 18147,
+    "day": 1687046400000,
+    "exerciseName": "Kniebeuge",
+    "weight": 50
+  },
+  {
+    "id": 84812,
+    "weight": 60,
+    "reps": 7,
+    "day": 1687046400000,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "day": 1687046400000,
+    "reps": 5,
+    "weight": 70,
+    "id": 28015,
+    "exerciseName": "Kniebeuge"
+  },
+  {
+    "weight": 70,
+    "day": 1687046400000,
+    "exerciseName": "Kniebeuge",
+    "reps": 5,
+    "id": 43392
+  },
+  {
+    "day": 1687046400000,
+    "weight": 80,
+    "exerciseName": "Kniebeuge",
+    "id": 518,
+    "reps": 5
+  },
+  {
+    "exerciseName": "Kniebeuge",
+    "day": 1687046400000,
+    "id": 31934,
+    "reps": 5,
+    "weight": 90
+  },
+  {
+    "reps": 5,
+    "weight": 90,
+    "exerciseName": "Kniebeuge",
+    "id": 81335,
+    "day": 1687046400000
+  },
+  {
+    "id": 99459,
+    "reps": 5,
+    "exerciseName": "Bankdrücken",
+    "day": 1687046400000,
+    "weight": 20
+  },
+  {
+    "id": 44340,
+    "exerciseName": "Bankdrücken",
+    "weight": 30,
+    "reps": 7,
+    "day": 1687046400000
+  },
+  {
+    "day": 1687046400000,
+    "reps": 5,
+    "id": 40021,
+    "weight": 40,
+    "exerciseName": "Bankdrücken"
+  },
+  {
+    "id": 5101,
+    "exerciseName": "Bankdrücken",
+    "weight": 50,
+    "day": 1687046400000,
+    "reps": 5
+  },
+  {
+    "weight": 60,
+    "id": 33754,
+    "exerciseName": "Bankdrücken",
+    "reps": 3,
+    "day": 1687046400000
+  },
+  {
+    "day": 1686700800000,
+    "exerciseName": "Rudern Maschine",
+    "reps": 12,
+    "id": 90501,
+    "weight": 30
+  },
+  {
+    "weight": 40,
+    "exerciseName": "Rudern Maschine",
+    "day": 1686700800000,
+    "reps": 12,
+    "id": 70777
+  },
+  {
+    "id": 52971,
+    "exerciseName": "Rudern Maschine",
+    "weight": 45,
+    "day": 1686700800000,
+    "reps": 12
+  },
+  {
+    "exerciseName": "Lat Zug",
+    "weight": 37,
+    "day": 1686700800000,
+    "id": 64299,
+    "reps": 12
+  },
+  {
+    "id": 20691,
+    "day": 1686700800000,
+    "weight": 55,
+    "exerciseName": "Lat Zug",
+    "reps": 8
+  },
+  {
+    "day": 1686700800000,
+    "reps": 11,
+    "id": 70037,
+    "weight": 45,
+    "exerciseName": "Lat Zug"
+  },
+  {
+    "reps": 12,
+    "weight": 35,
+    "id": 23611,
+    "day": 1686700800000,
+    "exerciseName": "Lat Zug"
+  },
+  {
+    "weight": 4,
+    "id": 35201,
+    "reps": 12,
+    "exerciseName": "Cable cros-over oben",
+    "day": 1686700800000
+  },
+  {
+    "exerciseName": "Cable cros-over oben",
+    "id": 92314,
+    "day": 1686700800000,
+    "reps": 12,
+    "weight": 6
+  },
+  {
+    "weight": 9,
+    "reps": 12,
+    "exerciseName": "Cable cros-over oben",
+    "id": 27798,
+    "day": 1686700800000
+  },
+  {
+    "exerciseName": "Cable cros-over oben",
+    "day": 1686700800000,
+    "id": 68419,
+    "reps": 12,
+    "weight": 9
+  },
+  {
+    "weight": 16,
+    "id": 68101,
+    "reps": 12,
+    "exerciseName": "Trizeps Kabel",
+    "day": 1686700800000
+  },
+  {
+    "exerciseName": "Trizeps Kabel",
+    "id": 53785,
+    "weight": 18,
+    "reps": 12,
+    "day": 1686700800000
+  },
+  {
+    "id": 40756,
+    "weight": 16,
+    "exerciseName": "Trizeps Kabel",
+    "day": 1686700800000,
+    "reps": 12
+  },
+  {
+    "reps": 12,
+    "day": 1686700800000,
+    "id": 39077,
+    "exerciseName": "Seitheben Maschine",
+    "weight": 15
+  },
+  {
+    "id": 8414,
+    "day": 1686700800000,
+    "exerciseName": "Seitheben Maschine",
+    "reps": 12,
+    "weight": 20
+  },
+  {
+    "day": 1686700800000,
+    "reps": 12,
+    "weight": 25,
+    "id": 89283,
+    "exerciseName": "Seitheben Maschine"
+  },
+  {
+    "id": 21793,
+    "weight": 25,
+    "day": 1686700800000,
+    "exerciseName": "Seitheben Maschine",
+    "reps": 12
+  },
+  {
+    "id": 51162,
+    "day": 1686700800000,
+    "reps": 1,
+    "weight": 10,
+    "exerciseName": "Seitheben Maschine"
+  },
+  {
+    "day": 1686700800000,
+    "id": 46602,
+    "reps": 12,
+    "weight": 5,
+    "exerciseName": "Revers fly"
+  },
+  {
+    "weight": 5,
+    "reps": 12,
+    "id": 94832,
+    "day": 1686700800000,
+    "exerciseName": "Revers fly"
+  },
+  {
+    "id": 46174,
+    "day": 1686700800000,
+    "reps": 12,
+    "exerciseName": "Revers fly",
+    "weight": 5
+  },
+  {
+    "id": 17685,
+    "exerciseName": "Bizepscurls",
+    "reps": 10,
+    "day": 1686700800000,
+    "weight": 10
+  },
+  {
+    "exerciseName": "Bizepscurls",
+    "reps": 10,
+    "id": 4514,
+    "day": 1686700800000,
+    "weight": 10
+  },
+  {
+    "id": 19032,
+    "weight": 8,
+    "day": 1686700800000,
+    "reps": 12,
+    "exerciseName": "Hammer Curls"
+  },
+  {
+    "reps": 12,
+    "day": 1686700800000,
+    "exerciseName": "Hammer Curls",
+    "weight": 8,
+    "id": 42121
+  }
+]
