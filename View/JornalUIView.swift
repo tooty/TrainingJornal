@@ -9,50 +9,80 @@ import SwiftUI
 import SwiftData
 
 struct JornalList: View {
-    @State private var date: Date = Date()
-    @State private var datePicker: Bool = false
+    @State private var pickerDate: Date = Date()
+    @State private var pickerDateShow: Bool = false
+    @State private var fileExport: Bool = false
+    
     @Query(sort: \Day.date, order: .reverse) var days: [Day]
     @Environment(\.modelContext) private var modelContext
+    @Query var data: [TrainingSet]
+    @State var mydocument: String = ""
     
     
     var body: some View {
-            NavigationView {
-                List {
-                    if datePicker {
+        NavigationSplitView {
+            List {
+                if pickerDateShow {
+                    VStack {
                         DatePicker(
-                            selection: $date,
+                            selection: $pickerDate,
                             displayedComponents: [.date],
                             label: {
-                                Button("Add Date"){
-                                    let newDate=Day(date: date)
-                                    modelContext.insert(newDate)
-                                    datePicker.toggle()
-                                }
                             }
                         )
-                        .datePickerStyle(.compact)
-                    }
-                    ForEach(days) {day in
-                        NavigationLink(day.dateString,destination: ExerciseList(day:day))
-                    }
-                    .onDelete(perform: { indexSet in
-                        for index in indexSet {
-                            let itemToDelete = days[index]
-                            modelContext.delete(itemToDelete)
+                        #if os(iOS)
+                        .datePickerStyle(.wheel)
+                        #endif
+                        .labelsHidden()
+                        Button("Add Date"){
+                            let newDate=Day(date: pickerDate)
+                            modelContext.insert(newDate)
+                            pickerDateShow.toggle()
+                            
                         }
-                    })
-                }
-                .toolbarRole(.editor)
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button("+"){
-                            datePicker.toggle()
-                        }
+                        .buttonStyle(.borderedProminent)
                     }
                 }
-                .navigationTitle("Jornal")
+                ForEach(days) {day in
+                    NavigationLink(day.dateString,destination: ExerciseList(day:day))
+                }
+                .onDelete(perform: { indexSet in
+                    for index in indexSet {
+                        let itemToDelete = days[index]
+                        modelContext.delete(itemToDelete)
+                    }
+                })
+                Button("export"){
+                    mydocument = exportJSON(mydata: data, context: modelContext).absoluteString
+                }
+                Button("load"){
+                    loadOld(context: modelContext)
+                }
+                Button("myShit"){
+                    clameDB(context: modelContext)
+                }
+                Button("clear"){
+                    distDB(context: modelContext)
+                }
             }
+            .animation(.bouncy, value: pickerDateShow)
+            .toolbar {
+                ToolbarItemGroup(placement: .automatic){
+                    Button(pickerDateShow ? "Cancel" : "Add"){
+                       pickerDateShow.toggle()
+                    }
+                    .buttonStyle(.automatic)
+                    .animation(.smooth, value: pickerDateShow)
+                }
+            }
+            .navigationTitle("Jornal")
+        }content:{
+            Text("Content")
         }
+    detail:{
+        Text("hi")
+    }
+    }
 }
 
 #Preview {

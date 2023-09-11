@@ -10,13 +10,21 @@ import SwiftUI
 
 struct SetView: View {
     @Bindable var set: TrainingSet
+    @State var exercise: Exercise
+    
     var body: some View {
+        var repMax = exercise.maxReps(weight: set.weight)
+        var weightMax = exercise.maxWeight(reps: set.reps)
         HStack{
             #if os(iOS)
             Text("Reps:")
             Picker("Reps",selection: $set.reps) {
                 ForEach(1..<21){i in
-                    Text(i.formatted()).tag(i)
+                    if (i >= repMax){
+                        Text(i.formatted()).tag(i).foregroundStyle(.red)
+                    }else{
+                        Text(i.formatted()).tag(i)
+                    }
                 }
             }
             .frame(height: 100)
@@ -25,7 +33,11 @@ struct SetView: View {
             Text("Weight:")
             Picker(selection: $set.weight, label: Text("Weight")) {
                 ForEach(1..<200){i in
-                    Text(i.formatted()).tag(i)
+                    if (i >= weightMax){
+                        Text(i.formatted()).tag(i).foregroundStyle(.red)
+                    }else{
+                        Text(i.formatted()).tag(i)
+                    }
                 }
             }
             .pickerStyle(.wheel)

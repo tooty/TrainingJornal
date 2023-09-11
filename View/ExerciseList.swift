@@ -7,49 +7,55 @@
 
 import SwiftUI 
 import SwiftData
-    struct ExerciseList: View { 
-        
+struct ExerciseList: View {
+    
     var day: Day
     @State private var name: String = "myName"
     @State private var present: Bool = false
     @Environment(\.modelContext) private var modelContext
+    var openExercises: [Exercise] {return allExercises.filter {!day.exercises.contains($0)} }
+    @State private var textField = ""
+    @Query(sort: \Exercise.name) var allExercises: [Exercise]
     
     
     
-        var body: some View {
-            NavigationView {
-                List{
-                    ControlGroup{
-                        Button("+"){
-                            present.toggle()
-                        }.buttonStyle(.automatic)
-                            .frame(maxWidth: .infinity)
-                    }.sheet(isPresented: $present,
-                            content: {
-                        ExerciseAdder(show: $present, day: day).presentationDetents([.medium])
-                    })
-                    ForEach(day.exercises){ exercise in
-                        NavigationLink(exercise.name, destination: ExerciseEditor(day: day,exercise: exercise))
-                    }
-                    .onDelete(perform: { indexSet in
-                        for index in indexSet {
-                            let itemToDelete = day.exercises[index]
-                            modelContext.delete(itemToDelete)
-                        }})
-                }
-                .navigationTitle(day.dateString)
-            }
-        }
-}
-
-#Preview {
+    var body: some View {
         List{
-            ControlGroup {
-                Button("+"){
+            if present {
+                HStack{
+                    TextField("custom Name", text: $textField).textFieldStyle(.roundedBorder).submitLabel(.done).onSubmit {
+                        let newExercise = Exercise(name: textField)
+                        modelContext.insert(newExercise)
+                        day.exercises.append(newExercise)
+                        present.toggle()
+                    }
                 }
-                .frame(maxWidth: .infinity)
-                .cornerRadius(5.0)
-            }.frame(alignment: .center)
-            Text("next")
+            }
+            ForEach(day.exercises){ exercise in
+                NavigationLink(exercise.name, destination: ExerciseEditor(day: day,exercise: exercise))
+            }
+            .onDelete(perform: { indexSet in
+                for index in indexSet {
+                    day.exercises.remove(at: index)
+                }
+            })
+            .onMove { day.exercises.move(fromOffsets: $0, toOffset: $1) }
         }
+        .toolbar(content: {
+                Menu {
+                    Button("Other"){
+                        present.toggle()
+                    }.menuStyle(.button)
+                    Divider()
+                    ForEach(openExercises){x in
+                        Button(x.name){
+                            day.exercises.append(x)
+                        }
+                    }
+                } label: {
+                    Text("Add")
+                }
+        })
+        .navigationTitle(day.dateString)
+    }
 }

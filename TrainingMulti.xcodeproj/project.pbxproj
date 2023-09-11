@@ -14,9 +14,10 @@
 		E95D010E2AAAF6A30061E962 /* JornalUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D01092AAAF6A30061E962 /* JornalUIView.swift */; };
 		E95D010F2AAAF6A30061E962 /* ExerciseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D010A2AAAF6A30061E962 /* ExerciseList.swift */; };
 		E95D01102AAAF6A30061E962 /* TrainingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D010B2AAAF6A30061E962 /* TrainingApp.swift */; };
-		E95D01132AAAF6DC0061E962 /* ExerciseAdder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D01112AAAF6DC0061E962 /* ExerciseAdder.swift */; };
 		E95D01142AAAF6DC0061E962 /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D01122AAAF6DC0061E962 /* SetView.swift */; };
 		E95D011A2AAAF8E30061E962 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D01192AAAF8E30061E962 /* ContentView.swift */; };
+		E97C694F2AAC66B400AD16F1 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C694E2AAC66B400AD16F1 /* ChartView.swift */; };
+		E98988CD2AAE142D00D9A1AE /* ChartControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98988CC2AAE142D00D9A1AE /* ChartControler.swift */; };
 		E9D12C1D2AAB5F0A00FEAD95 /* interfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D12C1C2AAB5F0A00FEAD95 /* interfaces.swift */; };
 		E9D12C1F2AAB61D200FEAD95 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = E9D12C1E2AAB61D200FEAD95 /* data.json */; };
 /* End PBXBuildFile section */
@@ -31,9 +32,12 @@
 		E95D01092AAAF6A30061E962 /* JornalUIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JornalUIView.swift; sourceTree = "<group>"; };
 		E95D010A2AAAF6A30061E962 /* ExerciseList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseList.swift; sourceTree = "<group>"; };
 		E95D010B2AAAF6A30061E962 /* TrainingApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingApp.swift; sourceTree = "<group>"; };
-		E95D01112AAAF6DC0061E962 /* ExerciseAdder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseAdder.swift; sourceTree = "<group>"; };
 		E95D01122AAAF6DC0061E962 /* SetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
 		E95D01192AAAF8E30061E962 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../../Training/Training/ContentView.swift; sourceTree = "<group>"; };
+		E97C694E2AAC66B400AD16F1 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		E98988CA2AADE34600D9A1AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E98988CB2AADE59500D9A1AE /* TrainingMultiDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrainingMultiDebug.entitlements; sourceTree = "<group>"; };
+		E98988CC2AAE142D00D9A1AE /* ChartControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartControler.swift; sourceTree = "<group>"; };
 		E9D12C1C2AAB5F0A00FEAD95 /* interfaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = interfaces.swift; path = ../../Training/Training/Modal/interfaces.swift; sourceTree = "<group>"; };
 		E9D12C1E2AAB61D200FEAD95 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,6 +56,7 @@
 		E94BC7DB2AA9B3AB00F29DB3 = {
 			isa = PBXGroup;
 			children = (
+				E98988CC2AAE142D00D9A1AE /* ChartControler.swift */,
 				E95D01152AAAF8BD0061E962 /* View */,
 				E94BC8042AA9B5AD00F29DB3 /* Helper */,
 				E95D01022AAAF64D0061E962 /* Modal */,
@@ -71,6 +76,8 @@
 		E94BC7E62AA9B3AB00F29DB3 /* TrainingMulti */ = {
 			isa = PBXGroup;
 			children = (
+				E98988CB2AADE59500D9A1AE /* TrainingMultiDebug.entitlements */,
+				E98988CA2AADE34600D9A1AE /* Info.plist */,
 				E94BC7EB2AA9B3AC00F29DB3 /* Assets.xcassets */,
 				E94BC7ED2AA9B3AC00F29DB3 /* TrainingMulti.entitlements */,
 				E94BC7EE2AA9B3AC00F29DB3 /* Preview Content */,
@@ -89,8 +96,8 @@
 		E94BC8042AA9B5AD00F29DB3 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				E95D01112AAAF6DC0061E962 /* ExerciseAdder.swift */,
 				E95D01122AAAF6DC0061E962 /* SetView.swift */,
+				E97C694E2AAC66B400AD16F1 /* ChartView.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -188,11 +195,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E95D01132AAAF6DC0061E962 /* ExerciseAdder.swift in Sources */,
 				E95D01102AAAF6A30061E962 /* TrainingApp.swift in Sources */,
 				E95D01142AAAF6DC0061E962 /* SetView.swift in Sources */,
+				E97C694F2AAC66B400AD16F1 /* ChartView.swift in Sources */,
 				E95D010E2AAAF6A30061E962 /* JornalUIView.swift in Sources */,
 				E95D010F2AAAF6A30061E962 /* ExerciseList.swift in Sources */,
+				E98988CD2AAE142D00D9A1AE /* ChartControler.swift in Sources */,
 				E9D12C1D2AAB5F0A00FEAD95 /* interfaces.swift in Sources */,
 				E95D011A2AAAF8E30061E962 /* ContentView.swift in Sources */,
 				E95D010D2AAAF6A30061E962 /* ExerciseEditor.swift in Sources */,
@@ -322,7 +330,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TrainingMulti/TrainingMulti.entitlements;
+				CODE_SIGN_ENTITLEMENTS = TrainingMulti/TrainingMultiDebug.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrainingMulti/Preview Content\"";
@@ -330,6 +339,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrainingMulti/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -361,6 +371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TrainingMulti/TrainingMulti.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrainingMulti/Preview Content\"";
@@ -368,6 +379,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrainingMulti/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
