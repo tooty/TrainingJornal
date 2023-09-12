@@ -13,7 +13,7 @@ struct ExerciseList: View {
     @State private var name: String = "myName"
     @State private var present: Bool = false
     @Environment(\.modelContext) private var modelContext
-    var openExercises: [Exercise] {return allExercises.filter {!day.exercises.contains($0)} }
+    var openExercises: [Exercise] {return allExercises}
     @State private var textField = ""
     @Query(sort: \Exercise.name) var allExercises: [Exercise]
     
@@ -25,21 +25,21 @@ struct ExerciseList: View {
                 HStack{
                     TextField("custom Name", text: $textField).textFieldStyle(.roundedBorder).submitLabel(.done).onSubmit {
                         let newExercise = Exercise(name: textField)
-                        modelContext.insert(newExercise)
-                        day.exercises.append(newExercise)
+                        let newDayExercise = DayExercise(day: day, exercise: newExercise)
                         present.toggle()
                     }
                 }
             }
             ForEach(day.exercises){ exercise in
-                NavigationLink(exercise.name, destination: ExerciseEditor(day: day,exercise: exercise))
+                NavigationLink(exercise.surject!.name, destination: ExerciseEditor(dayExercise: exercise))
             }
             .onDelete(perform: { indexSet in
                 for index in indexSet {
-                    day.exercises.remove(at: index)
+                    let remove = day.exercises[index]
+                    modelContext.delete(remove)
                 }
             })
-            .onMove { day.exercises.move(fromOffsets: $0, toOffset: $1) }
+           // .onMove { day.exercises.move(fromOffsets: $0, toOffset: $1) }
         }
         .toolbar(content: {
                 Menu {
@@ -49,7 +49,8 @@ struct ExerciseList: View {
                     Divider()
                     ForEach(openExercises){x in
                         Button(x.name){
-                            day.exercises.append(x)
+                            let new = DayExercise(day: day, exercise: x)
+                            day.exercises.append(new)
                         }
                     }
                 } label: {

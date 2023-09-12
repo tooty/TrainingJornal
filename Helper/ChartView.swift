@@ -17,7 +17,7 @@ struct ChartView: View {
     var body: some View {
         
         let prepairdData: (oneRMax:[plotData],oneR:[plotData],volume:[plotData])
-        = generatePlotData(context: modelContext, exercise: exercise)
+        = generatePlotData(exercise: exercise)
         GroupBox ("OneRMax - \(exercise.name)") {
             Chart{
                 ForEach(prepairdData.oneRMax, id: \.x) { item in

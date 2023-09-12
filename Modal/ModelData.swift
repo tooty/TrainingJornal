@@ -10,50 +10,54 @@ import SwiftData
 
 @Model
 final class Day {
-    @Attribute(.unique) let date: Date
-    var exercises: [Exercise]
-    @Relationship(deleteRule: .cascade) var sets: [DaySet]
-    var dateString: String {
-        return dateString(date: date)
-    }
+    @Attribute(.unique) 
+    let date: Date
+    @Relationship(deleteRule: .cascade)
+    var exercises: [DayExercise] = [DayExercise]()
+    var sets: [DaySet]?
+    
  
     init(date: Date) {
-        self.date = date
-        self.exercises = [Exercise]()
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year, .month, .day], from: date)
+        self.date = calendar.date(from: components)!
         self.sets = [DaySet]()
     }
     
-    func dateString(date:Date)-> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "de_DE")
-        dateFormatter.setLocalizedDateFormatFromTemplate("dMMMM")
-        return dateFormatter.string(from: date)
+    var dateString: String {
+        return dateString(date: date)
     }
+    
 }
 
 @Model
 final class Exercise {
     @Attribute(.unique) var name: String
+    var inject: [DayExercise] = [DayExercise]()
+    var sets: [DaySet] = [DaySet]()
     var oneRMax: Double?
-    //var latest: TrainingSet?
     
-    func maxWeight(reps: Int) -> Int{
-        let oneRepMax = oneRMax ?? 0
-        let ret =  (1.0278 - 0.0278 * Double(reps)) * oneRepMax
-        
-        return Int(ret)
-    }
-    
-    func maxReps(weight: Int) -> Int{
-        let oneRepMax = oneRMax ?? 1
-        let ret = (1.0278-Double(weight)/oneRepMax)/0.0278
-        print(ret)
-        
-        return Int(ret)
-    }
     
     init(name: String) {
         self.name = name
+    }
+}
+
+@Model
+final class DayExercise {
+    var day: Day?
+    @Relationship(deleteRule: .nullify)
+    var surject: Exercise?
+    @Relationship(deleteRule: .cascade)
+    var sets: [DaySet]?
+    
+    
+    init(day: Day, exercise: Exercise) {
+        self.day = day
+        self.surject = exercise
+        self.sets = [DaySet]()
+        day.exercises.append(self)
+        exercise.inject.append(self)
     }
 }
 
@@ -62,11 +66,12 @@ final class Exercise {
 final class  DaySet{
     var weight: Int
     var reps: Int
-    //@Relationship(deleteRule: .cascade,inverse: \Day.sets )
     var day: Day?
+    var dayExercise: DayExercise?
+    @Relationship(deleteRule: .nullify, inverse: \Exercise.sets)
     var exercise: Exercise?
     
-    var date: Date {return day?.date ?? Date()}
+    var date: Date {return day!.date }
     var oneRepMax: Double {
         return  Double(weight) / (1.0278 - 0.0278 * Double(reps))
     }
@@ -74,21 +79,15 @@ final class  DaySet{
         return  reps * weight
     }
     
-    init(weight: Int, reps: Int, day: Day?, exercise: Exercise) {
+    init(weight: Int, reps: Int, day: Day, dayExercise: DayExercise) {
         self.weight = weight
         self.reps = reps
-        self.exercise = exercise
+        self.dayExercise = dayExercise
         self.day = day
-    }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.weight = try values.decode(Int.self, forKey: .weight)
-        self.reps = try values.decode(Int.self, forKey: .reps)
-        let exeString = try values.decode(String.self, forKey: .exerciseName)
-        self.exercise = Exercise(name: exeString)
-        let dayInt = try values.decode(Int.self, forKey: .day)
-        self.day = Day(date: Date(timeIntervalSince1970: TimeInterval(dayInt/1000)))
+        self.exercise = dayExercise.surject!
+        dayExercise.sets?.append(self)
+        dayExercise.surject!.sets.append(self)
+        day.sets?.append(self)
     }
 }
 

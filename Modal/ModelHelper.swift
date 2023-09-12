@@ -41,7 +41,21 @@ extension Exercise: Hashable,Equatable {
     static func == (lhs: Exercise, rhs: Exercise)->Bool{
         return lhs.name == rhs.name
     }
-
+    
+    func maxWeight(reps: Int) -> Int{
+        let oneRepMax = oneRMax ?? 0
+        let ret =  (1.0278 - 0.0278 * Double(reps)) * oneRepMax
+        
+        return Int(ret)
+    }
+    
+    func maxReps(weight: Int) -> Int{
+        let oneRepMax = oneRMax ?? 1
+        let ret = (1.0278-Double(weight)/oneRepMax)/0.0278
+        print(ret)
+        
+        return Int(ret)
+    }
 }
 
 extension Day: Equatable{
@@ -52,9 +66,16 @@ extension Day: Equatable{
     enum CodingKeys: String, CodingKey {
         case day
     }
+    
+    func dateString(date:Date)-> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        dateFormatter.setLocalizedDateFormatFromTemplate("dMMMM")
+        return dateFormatter.string(from: date)
+    }
 }
 
-extension DaySet: Codable {
+extension DaySet: Encodable {
     enum CodingKeys: String, CodingKey {
         case weight
         case day
@@ -66,7 +87,7 @@ extension DaySet: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(weight, forKey: .weight)
         try container.encode(reps, forKey: .reps)
-        try container.encode(exercise?.name, forKey: .exerciseName)
+        try container.encode(dayExercise!.surject!.name, forKey: .exerciseName)
         try container.encode(date.timeIntervalSince1970*1000, forKey: .day)
     }
     

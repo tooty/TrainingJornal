@@ -8,20 +8,12 @@
 import Foundation
 import SwiftData
 
-func generatePlotData(context: ModelContext, exercise: Exercise) -> ([plotData],[plotData],[plotData]) {
-    //calculated twice
+func generatePlotData(exercise: Exercise) -> ([plotData],[plotData],[plotData]) {
     var sets = [DaySet]()
-    do {
-        sets = try context.fetch(FetchDescriptor<DaySet>())
-    } catch {
-        print(error)
-        return ([],[],[])
-    }
-    
-    let setsExercise:[DaySet] = sets.filter{x in x.exercise?.name == exercise.name}
+    sets = exercise.sets
         
-    var oneR: [plotData] = setsExercise.map{set in return plotData(x: set.day!.date, y: Double(set.oneRepMax))}
-    var volume: [plotData] = setsExercise.map{set in return plotData(x: set.day!.date, y: Double(set.volume))}
+    var oneR: [plotData] = sets.map{set in return plotData(x: set.day!.date, y: Double(set.oneRepMax))}
+    var volume: [plotData] = sets.map{set in return plotData(x: set.day!.date, y: Double(set.volume))}
     let dateSet = Set(oneR.map{return $0.x})
     
     oneR = oneR.sorted(by: {(a,b)in
