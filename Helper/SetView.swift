@@ -9,12 +9,12 @@ import SwiftUI
 
 
 struct SetView: View {
-    @Bindable var set: TrainingSet
+    @Bindable var set: DaySet
     @State var exercise: Exercise
     
     var body: some View {
-        var repMax = exercise.maxReps(weight: set.weight)
-        var weightMax = exercise.maxWeight(reps: set.reps)
+        let repMax = exercise.maxReps(weight: set.weight)
+        let weightMax = exercise.maxWeight(reps: set.reps)
         HStack{
             #if os(iOS)
             Text("Reps:")

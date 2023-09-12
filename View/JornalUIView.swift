@@ -15,7 +15,7 @@ struct JornalList: View {
     
     @Query(sort: \Day.date, order: .reverse) var days: [Day]
     @Environment(\.modelContext) private var modelContext
-    @Query var data: [TrainingSet]
+    @Query var data: [DaySet]
     @State var mydocument: String = ""
     
     
@@ -87,5 +87,5 @@ struct JornalList: View {
 
 #Preview {
     JornalList()
-        .modelContainer(for: [Day.self, Exercise.self, TrainingSet.self])
+        .modelContainer(for: [Day.self, Exercise.self, DaySet.self])
 }

@@ -58,5 +58,5 @@ struct ChartView: View {
 
 #Preview {
     ChartView(exercise: Exercise(name: "Kniebeuge"))
-        .modelContainer(for: [Day.self, Exercise.self, TrainingSet.self])
+        .modelContainer(for: [Day.self, Exercise.self, DaySet.self])
 }

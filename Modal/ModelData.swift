@@ -6,18 +6,13 @@
 //
 
 import Foundation
-import Combine
 import SwiftData
-import UniformTypeIdentifiers
-
-//var exeSets: [ExeSet] = load("datatest.json")
-//let oldSets: [oldSet] = load("data.json")
 
 @Model
 final class Day {
     @Attribute(.unique) let date: Date
     var exercises: [Exercise]
-    @Relationship(deleteRule: .cascade) var sets: [TrainingSet]
+    @Relationship(deleteRule: .cascade) var sets: [DaySet]
     var dateString: String {
         return dateString(date: date)
     }
@@ -25,7 +20,7 @@ final class Day {
     init(date: Date) {
         self.date = date
         self.exercises = [Exercise]()
-        self.sets = [TrainingSet]()
+        self.sets = [DaySet]()
     }
     
     func dateString(date:Date)-> String{
@@ -40,7 +35,7 @@ final class Day {
 final class Exercise {
     @Attribute(.unique) var name: String
     var oneRMax: Double?
-    var latest: TrainingSet?
+    //var latest: TrainingSet?
     
     func maxWeight(reps: Int) -> Int{
         let oneRepMax = oneRMax ?? 0
@@ -62,13 +57,14 @@ final class Exercise {
     }
 }
 
+
 @Model
-final class TrainingSet {
+final class  DaySet{
     var weight: Int
     var reps: Int
     //@Relationship(deleteRule: .cascade,inverse: \Day.sets )
     var day: Day?
-    var exercise: Exercise
+    var exercise: Exercise?
     
     var date: Date {return day?.date ?? Date()}
     var oneRepMax: Double {
@@ -96,70 +92,3 @@ final class TrainingSet {
     }
 }
 
-extension Day: Equatable{
-    static func == (lhs: Day, rhs: Day)->Bool{
-        return lhs.dateString == rhs.dateString
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case day
-    }
-}
-
-extension TrainingSet: Codable {
-    enum CodingKeys: String, CodingKey {
-        case weight
-        case day
-        case exerciseName
-        case reps
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(weight, forKey: .weight)
-        try container.encode(reps, forKey: .reps)
-        try container.encode(exercise?.name, forKey: .exerciseName)
-        try container.encode(date.timeIntervalSince1970*1000, forKey: .day)
-    }
-    
-}
-
-extension Exercise: Hashable,Equatable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case exerciseName
-    }
-    
-    static func == (lhs: Exercise, rhs: Exercise)->Bool{
-        return lhs.name == rhs.name
-    }
-
-}
-
-
-func getDocumentsDirectory() -> URL {
-    // find all possible documents directories for this user
-    let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-
-    // just send back the first one, which ought to be the only one
-    return paths[0]
-}
-
-func exportJSON(mydata: Encodable, context: ModelContext)-> URL {
-    var dir = getDocumentsDirectory()
-    dir = dir.appendingPathComponent("sets.json")
-    let encoder = JSONEncoder()
-    encoder.outputFormatting = .prettyPrinted
-    do {
-        let stream =  try encoder.encode(mydata)
-        try stream.write(to: dir)
-    } catch { print(error) }
-    return dir
-}
-
-extension UTType {
-    static var setsStack = UTType(exportedAs: "com.example.sets")
-}

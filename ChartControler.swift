@@ -10,15 +10,15 @@ import SwiftData
 
 func generatePlotData(context: ModelContext, exercise: Exercise) -> ([plotData],[plotData],[plotData]) {
     //calculated twice
-    var sets = [TrainingSet]()
+    var sets = [DaySet]()
     do {
-        sets = try context.fetch(FetchDescriptor<TrainingSet>())
+        sets = try context.fetch(FetchDescriptor<DaySet>())
     } catch {
         print(error)
         return ([],[],[])
     }
     
-    let setsExercise:[TrainingSet] = sets.filter{x in x.exercise?.name == exercise.name}
+    let setsExercise:[DaySet] = sets.filter{x in x.exercise?.name == exercise.name}
         
     var oneR: [plotData] = setsExercise.map{set in return plotData(x: set.day!.date, y: Double(set.oneRepMax))}
     var volume: [plotData] = setsExercise.map{set in return plotData(x: set.day!.date, y: Double(set.volume))}
@@ -39,7 +39,6 @@ func generatePlotData(context: ModelContext, exercise: Exercise) -> ([plotData],
     })
     
     exercise.oneRMax = oneRMax.max{(a,b) in a.y<b.y}!.y
-    print (exercise.oneRMax)
     return (oneRMax,oneR,volume)
 }
 func buildSum(_ day: Date,_ data: [plotData]) -> plotData{

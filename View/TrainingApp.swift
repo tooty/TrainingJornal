@@ -17,8 +17,8 @@ struct TrainingApp: App {
          //   ContentView()
         //}
         let configuration = ModelConfiguration(
-            schema: Schema([Day.self, Exercise.self, TrainingSet.self]))
-        let container = try? ModelContainer(for: Schema([Day.self, Exercise.self, TrainingSet.self]), configurations: configuration)
+            schema: Schema([Day.self, Exercise.self, DaySet.self]))
+        let container = try? ModelContainer(for: Schema([Day.self, Exercise.self, DaySet.self]), configurations: configuration)
         WindowGroup {
             ContentView()
                 .modelContainer(container!)

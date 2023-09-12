@@ -38,9 +38,8 @@ struct ExerciseEditor: View {
                     showSheet = true
                 }
                 Button("Add", systemImage: "plus") {
-                    var newEntry = TrainingSet(weight: exercise.latest?.weight ?? 1, reps: exercise.latest?.reps ?? 1, day: day, exercise: exercise)
+                    var newEntry = DaySet(weight:  1, reps:  1, day: day, exercise: exercise)
                     modelContext.insert(newEntry)
-                    exercise.latest = newEntry
                     day.sets.append(newEntry)
                 }.buttonStyle(.automatic)
             }
