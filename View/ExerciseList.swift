@@ -17,15 +17,13 @@ struct ExerciseList: View {
     @State private var textField = ""
     @Query(sort: \Exercise.name) var allExercises: [Exercise]
     
-    
-    
     var body: some View {
         List{
             if present {
                 HStack{
                     TextField("custom Name", text: $textField).textFieldStyle(.roundedBorder).submitLabel(.done).onSubmit {
                         let newExercise = Exercise(name: textField)
-                        let newDayExercise = DayExercise(day: day, exercise: newExercise)
+                        _ = DayExercise(day: day, exercise: newExercise)
                         present.toggle()
                     }
                 }
@@ -39,7 +37,7 @@ struct ExerciseList: View {
                     modelContext.delete(remove)
                 }
             })
-           // .onMove { day.exercises.move(fromOffsets: $0, toOffset: $1) }
+            .onMove { day.exercises.move(fromOffsets: $0, toOffset: $1) }
         }
         .toolbar(content: {
                 Menu {

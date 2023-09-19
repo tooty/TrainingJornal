@@ -9,24 +9,29 @@ import Foundation
 import SwiftData
 
 @Model
+final class Settings{
+    var planning: Bool
+    
+    init() {
+        self.planning = false
+    }
+}
+
+@Model
 final class Day {
     @Attribute(.unique) 
     let date: Date
     @Relationship(deleteRule: .cascade)
     var exercises: [DayExercise] = [DayExercise]()
-    var sets: [DaySet]?
+    var sets: [DaySet] = [DaySet]()
     
  
     init(date: Date) {
         let calendar = Calendar.current
         let components = calendar.dateComponents([.year, .month, .day], from: date)
         self.date = calendar.date(from: components)!
-        self.sets = [DaySet]()
     }
     
-    var dateString: String {
-        return dateString(date: date)
-    }
     
 }
 
@@ -35,8 +40,8 @@ final class Exercise {
     @Attribute(.unique) var name: String
     var inject: [DayExercise] = [DayExercise]()
     var sets: [DaySet] = [DaySet]()
-    var oneRMax: Double?
-    
+    var stepSize: Int = 1
+    //var last: (weight: Int, reps: Int)? = (weight:1,reps:1)
     
     init(name: String) {
         self.name = name
@@ -46,16 +51,15 @@ final class Exercise {
 @Model
 final class DayExercise {
     var day: Day?
-    @Relationship(deleteRule: .nullify)
     var surject: Exercise?
     @Relationship(deleteRule: .cascade)
-    var sets: [DaySet]?
+    var sets: [DaySet] = [DaySet]()
+    var sortedSets: [DaySet] {sets.sorted(by: {$0.sort > $1.sort})}
     
     
     init(day: Day, exercise: Exercise) {
         self.day = day
         self.surject = exercise
-        self.sets = [DaySet]()
         day.exercises.append(self)
         exercise.inject.append(self)
     }
@@ -66,28 +70,25 @@ final class DayExercise {
 final class  DaySet{
     var weight: Int
     var reps: Int
+    var sort: Double
     var day: Day?
+    var planned = false
     var dayExercise: DayExercise?
-    @Relationship(deleteRule: .nullify, inverse: \Exercise.sets)
     var exercise: Exercise?
-    
     var date: Date {return day!.date }
-    var oneRepMax: Double {
-        return  Double(weight) / (1.0278 - 0.0278 * Double(reps))
-    }
-    var volume: Int{
-        return  reps * weight
-    }
     
-    init(weight: Int, reps: Int, day: Day, dayExercise: DayExercise) {
+    
+    init(weight: Int, reps: Int, day: Day, dayExercise: DayExercise, planned: Bool) {
         self.weight = weight
         self.reps = reps
-        self.dayExercise = dayExercise
+        self.sort = Date().timeIntervalSince1970
         self.day = day
+        self.dayExercise = dayExercise
+        //self.planned = planned
         self.exercise = dayExercise.surject!
-        dayExercise.sets?.append(self)
+        dayExercise.sets.append(self)
         dayExercise.surject!.sets.append(self)
-        day.sets?.append(self)
+        day.sets.append(self)
     }
 }
 

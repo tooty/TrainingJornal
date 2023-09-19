@@ -13,18 +13,10 @@ import SwiftData
 
 struct TrainingApp: App {
     var body: some Scene {
-        //DocumentGroup(editing: TrainingSet.self, contentType: .setsStack){
-         //   ContentView()
-        //}
-        let configuration = ModelConfiguration(
-            schema: Schema([Day.self, Exercise.self, DaySet.self, DayExercise.self]))
-        let container = try? ModelContainer(for: Schema([Day.self, Exercise.self, DaySet.self, DayExercise.self]), configurations: configuration)
         WindowGroup {
             ContentView()
-                .modelContainer(container!)
+                .modelContainer(for: [Day.self, Exercise.self, DaySet.self, DayExercise.self, Settings.self])
         }
     }
     
 }
-
-

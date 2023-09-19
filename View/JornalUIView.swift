@@ -7,16 +7,18 @@
 
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 
 struct JornalList: View {
     @State private var pickerDate: Date = Date()
     @State private var pickerDateShow: Bool = false
     @State private var fileExport: Bool = false
+    @State private var fileImport: Bool = false
     
     @Query(sort: \Day.date, order: .reverse) var days: [Day]
     @Environment(\.modelContext) private var modelContext
     @Query var data: [DaySet]
-    @State var mydocument: String = ""
+    private var mydocument: URL { exportJSON(mydata: data, context: modelContext)}
     
     
     var body: some View {
@@ -30,9 +32,9 @@ struct JornalList: View {
                             label: {
                             }
                         )
-                        #if os(iOS)
+#if os(iOS)
                         .datePickerStyle(.wheel)
-                        #endif
+#endif
                         .labelsHidden()
                         Button("Add Date"){
                             let newDate=Day(date: pickerDate)
@@ -53,10 +55,11 @@ struct JornalList: View {
                     }
                 })
                 Button("export"){
-                    mydocument = exportJSON(mydata: data, context: modelContext).absoluteString
+                    fileExport.toggle()
+                    
                 }
                 Button("load"){
-                    loadOld(context: modelContext)
+                    fileImport.toggle()
                 }
                 Button("myShit"){
                     clameDB(context: modelContext)
@@ -69,19 +72,62 @@ struct JornalList: View {
             .toolbar {
                 ToolbarItemGroup(placement: .automatic){
                     Button(pickerDateShow ? "Cancel" : "Add"){
-                       pickerDateShow.toggle()
+                        pickerDateShow.toggle()
                     }
                     .buttonStyle(.automatic)
-                    .animation(.smooth, value: pickerDateShow)
+                    .animation(.easeInOut(duration: TimeInterval(0.1)), value: pickerDateShow)
                 }
             }
             .navigationTitle("Jornal")
         }content:{
-            Text("Content")
+            if days.first != nil {
+                ExerciseList(day: days.first!)
+            }
         }
     detail:{
-        Text("hi")
     }
+    .fileExporter(
+        isPresented: $fileExport,
+        document: jsonExport(url: mydocument),
+        contentType: .json,
+        defaultFilename: "myfile.json"
+    ) {
+        result in
+        if case .success = result {
+            print(result)
+        } else {
+            print(result)
+        }
+    }
+    .fileImporter(isPresented: $fileImport, allowedContentTypes: [.json]){ result in
+        if case .success =  result{
+            let url = try! result.get()
+            let accasible = url.startAccessingSecurityScopedResource()
+            loadOld(context: modelContext,url: url)
+            url.stopAccessingSecurityScopedResource()
+        } else {
+            print(result)
+        }
+    }
+    }
+    struct jsonExport: FileDocument {
+        static var readableContentTypes: [UTType] = [.json]
+        var url: URL?
+        
+        init(url: URL){
+            self.url = url
+        }
+        
+        init(configuration: ReadConfiguration) throws {
+            guard let data = configuration.file.regularFileContents
+            else {
+                throw CocoaError(.fileReadCorruptFile)
+            }
+        }
+        
+        func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+            return try FileWrapper(url: url!)
+        }
     }
 }
 
