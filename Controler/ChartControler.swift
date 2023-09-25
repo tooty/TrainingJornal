@@ -38,42 +38,25 @@ extension Exercise {
         return volume
     }
     
-    //func generatePlotData(exercise: Exercise, planned: Bool, completion: @escaping([plotData],[plotData],[plotData]) -> Void)  {
-    func generatePlotData(exercise: Exercise, planned: Bool) -> ([plotData],[plotData],[plotData]) {
-        var sets = [DaySet]()
-        sets = exercise.sets
+    func generatePlotData(modelContext: ModelContext, exercise: Exercise, planned: Bool) -> ([plotData],[plotData],[plotData]) {
+        var sets = exercise.sets
         sets = sets.filter{$0.planned == planned}
         let dateSet = Set(sets.map{return $0.date})
         var oneR: [plotData] = []
         var volume: [plotData] = []
         
-        //let queue = DispatchGroup()
+        oneR = self.generateOneR(sets: sets)
+        volume = self.generateVolume(sets: sets,dateSet: dateSet)
+        var oneRMax: [plotData] = dateSet.map{self.reduceMax($0,oneR)}
+        oneRMax = oneRMax.sorted(by: {(a,b)in
+            a.x <= b.x
+        })
         
-        //queue.enter()
-        //DispatchQueue(label: "one").async {
-            oneR = self.generateOneR(sets: sets)
-         //   queue.leave()
-        //}
-        //queue.enter()
-        //DispatchQueue(label: "two").async {
-            volume = self.generateVolume(sets: sets,dateSet: dateSet)
-         //   queue.leave()
-        //}
-            
-            
-        //queue.notify(queue: .global()) {
-            var oneRMax = dateSet.map{self.reduceMax($0,oneR)}
-            oneRMax = oneRMax.sorted(by: {(a,b)in
-                a.x <= b.x
-            })
-            
-            oneRMax = oneRMax.sorted(by: {(a,b)in
-                a.x <= b.x
-            })
-            
+        oneRMax = oneRMax.sorted(by: {(a,b)in
+            a.x <= b.x
+        })
+        
         return (oneRMax,oneR,volume)
-         //   completion(oneRMax,oneR,volume)
-        //}
     }
     func buildSum(_ day: Date,_ data: [plotData]) -> plotData{
         let sets: [plotData] = data.filter{$0.x == day}
@@ -81,7 +64,7 @@ extension Exercise {
         sum = sum/50
         return plotData(x:day,y:sum)
     }
-
+    
     func reduceMax(_ day: Date,_ data: [plotData]) -> plotData{
         let sets: [plotData] = data.filter{$0.x == day}
         let ret = sets.max{(a,b) in a.y<b.y}!

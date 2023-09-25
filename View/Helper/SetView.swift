@@ -15,9 +15,11 @@ struct SetView: View {
     
     var body: some View {
         let exercise: Exercise? = set.exercise
+        
         let repMax = exercise?.maxReps(weight: set.weight, exclude: [set])
         let weightMax = exercise?.maxWeight(reps: set.reps, exclude: [set])
-        HStack{
+        
+        let hstack = HStack{
             if viewToggle == true {
                 VStack{
                     Text("Reps:")
@@ -57,7 +59,12 @@ struct SetView: View {
                     Text(set.weight.formatted())
             }
         }
-        
+        if set.planned == true{
+            hstack.foregroundStyle(Color.orange)
+        }
+        else {
+            hstack
+        }
     }
 }
 

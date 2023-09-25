@@ -9,15 +9,6 @@ import Foundation
 import SwiftData
 
 @Model
-final class Settings{
-    var planning: Bool
-    
-    init() {
-        self.planning = false
-    }
-}
-
-@Model
 final class Day {
     @Attribute(.unique) 
     let date: Date

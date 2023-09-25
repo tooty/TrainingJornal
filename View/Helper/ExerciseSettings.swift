@@ -16,7 +16,6 @@ struct ExerciseSettings: View {
         HStack{
             VStack{
                 Text("Plan:")
-               // Toggle("Planed", isOn: <#T##Binding<Bool>#>)
             }
             
             Text("Weight step size: ")

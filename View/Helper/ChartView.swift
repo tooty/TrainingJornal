@@ -11,18 +11,16 @@ import Charts
 
 struct ChartView: View {
     @Environment(\.modelContext) private var modelContext
-    //let exercise: Exercise = Exercise(name: "Kniebeuge")
     let exercise: Exercise
-    @State var volume: Bool = false
-    @State var oneRm: Bool = false
+    
+    @State var volume: Bool = true
+    @State var oneRm: Bool = true
     @State var oneR: Bool = true
+    @State var prepairdData: (oneRMax:[plotData],oneR:[plotData],volume:[plotData]) = ([],[],[])
+    @State var planned: (oneRMax:[plotData],oneR:[plotData],volume:[plotData]) = ([],[],[])
     
     var body: some View {
         
-        let prepairdData: (oneRMax:[plotData],oneR:[plotData],volume:[plotData])
-        = exercise.generatePlotData(exercise: exercise, planned: false)
-        let planned = exercise.generatePlotData(exercise: exercise, planned: true)
-        var color = Color("lightgray")
         GroupBox ("OneRMax - \(exercise.name)") {
             Chart{
                 ForEach(prepairdData.oneRMax, id: \.x) { item in
@@ -85,12 +83,13 @@ struct ChartView: View {
                 }
             }
         }
+        .onChange(of: exercise.hashValue, initial: true, {
+            DispatchQueue(label: "mine").async {
+                prepairdData = exercise.generatePlotData(modelContext: modelContext, exercise: exercise, planned: false)
+                planned = exercise.generatePlotData(modelContext: modelContext, exercise: exercise, planned: true)
+            }
+        })
         .toggleStyle(.button)
         .backgroundStyle(Color.clear.gradient)
     }
-}
-
-#Preview {
-    ChartView(exercise: Exercise(name: "Kniebeuge"))
-        .modelContainer(for: [Day.self, Exercise.self, DaySet.self])
 }

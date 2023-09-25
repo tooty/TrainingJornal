@@ -102,9 +102,14 @@ struct JornalList: View {
     .fileImporter(isPresented: $fileImport, allowedContentTypes: [.json]){ result in
         if case .success =  result{
             let url = try! result.get()
-            let accasible = url.startAccessingSecurityScopedResource()
+            _ = url.startAccessingSecurityScopedResource()
             loadOld(context: modelContext,url: url)
             url.stopAccessingSecurityScopedResource()
+            do{
+                try modelContext.save()
+            } catch {
+                print(error)
+            }
         } else {
             print(result)
         }
@@ -119,19 +124,11 @@ struct JornalList: View {
         }
         
         init(configuration: ReadConfiguration) throws {
-            guard let data = configuration.file.regularFileContents
-            else {
-                throw CocoaError(.fileReadCorruptFile)
-            }
+            let _ = configuration.file.regularFileContents
         }
         
         func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
             return try FileWrapper(url: url!)
         }
     }
-}
-
-#Preview {
-    JornalList()
-        .modelContainer(for: [Day.self, Exercise.self, DaySet.self])
 }

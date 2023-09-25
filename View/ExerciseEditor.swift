@@ -16,7 +16,6 @@ struct ExerciseEditor: View {
     @State private var showSettings = false
     @State private var detent: PresentationDetent = .fraction(0.3)
     @State private var selected = -1
-    @Query var settings: [Settings]
     
     var body: some View {
         VStack{
@@ -31,6 +30,7 @@ struct ExerciseEditor: View {
                         })
                     #if os(macOS)
                         SetView(set: seti, viewToggle: true)
+                    
                     #else
                     DisclosureGroup(isExpanded: binding, content: {
                         SetView(set: seti, viewToggle: true)
@@ -38,30 +38,29 @@ struct ExerciseEditor: View {
                         SetView(set: seti, viewToggle: false)
                     })
                     .swipeActions(edge: .leading,content: {
-                        Button(action: {
+                        Button {
                             seti.planned.toggle()
-                        }, label: {
+                        } label: {
                             if (seti.planned == true){
-                                Label("Panned", systemImage: "pencil.circle").tint(.orange)
+                                Label("Done", systemImage: "pencil.circle.fill")
                             }
                             else {
-                                Label("Done", systemImage: "pencil.circle.fill").tint(.green)
+                                Label("Panned", systemImage: "pencil.circle").tint(.orange)
                             }
-                        })
+                        }
                     })
                     #endif
                 }
                 .onDelete(perform: { indexSet in
                     for index in indexSet {
-                        let item = dayExercise.sets[index]
-                        dayExercise.sets.remove(at: index)
+                        let item = dayExercise.sortedSets[index]
                         modelContext.delete(item)
                     }
                 })
                 .onMove {
                     dayExercise.sets.move(fromOffsets: $0, toOffset: $1)
                 }
-                .animation(.easeInOut, value: dayExercise.sets)
+                .animation(.easeInOut, value: dayExercise.sortedSets.hashValue)
             }
             .navigationTitle(dayExercise.surject!.name)
             .toolbar(content: {
@@ -86,19 +85,18 @@ struct ExerciseEditor: View {
                 }
             })
             if horizontalSizeClass != .compact {
-                ChartView(exercise: dayExercise.surject!)
+                    ChartView(exercise: dayExercise.surject!)
             }
         }
         .frame(maxHeight: .infinity)
-        #if os(iOS)
             .sheet(isPresented: $showChart, content: {
-                ChartView(exercise: dayExercise.surject!).presentationDetents([.medium,.fraction(0.3),.large])
+                ChartView(exercise: dayExercise.surject!)
+                    .presentationDetents([.medium,.fraction(0.3),.large])
                 .presentationBackgroundInteraction(.enabled(upThrough: .medium))
             })
             .sheet(isPresented: $showSettings, content: {
                 ExerciseSettings(exercise: dayExercise.surject!).presentationDetents([.medium,.fraction(0.3),.large])
                 .presentationBackgroundInteraction(.enabled(upThrough: .medium))
             })
-        #endif
     }
 }

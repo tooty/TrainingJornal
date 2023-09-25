@@ -12,7 +12,7 @@ import UniformTypeIdentifiers
 
 extension Exercise: Hashable,Equatable {
     func hash(into hasher: inout Hasher) {
-        hasher.combine(ObjectIdentifier(self))
+        hasher.combine(sets)
     }
     
     enum CodingKeys: String, CodingKey {
@@ -40,12 +40,24 @@ extension Exercise: Hashable,Equatable {
     }
 }
 
-extension DaySet: Encodable{
+extension DayExercise: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.sets)
+    }
+}
+
+extension DaySet: Encodable, Hashable{
     enum CodingKeys: String, CodingKey {
         case weight
         case day
         case exerciseName
         case reps
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.reps)
+        hasher.combine(self.weight)
+        hasher.combine(self.planned)
     }
 
     func encode(to encoder: Encoder) throws {
