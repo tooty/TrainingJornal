@@ -10,16 +10,16 @@ import SwiftData
 
 @main
 
-
 struct TrainingApp: App {
+    @State private var chartViewModel = ChartViewModel()
     var body: some Scene {
         //DocumentGroup(editing: [Day.self, Exercise.self, DaySet.self, DayExercise.self, Settings.self], contentType: .setsStack ){
         //    ContentView()
         //}
         WindowGroup {
-            ContentView()
-               .modelContainer(for: [Day.self, Exercise.self, DaySet.self, DayExercise.self])
+            JornalList()
+                .modelContainer(for: [Day.self, Exercise.self, DaySet.self, DayExercise.self])
+                .environment(chartViewModel)
         }
     }
-    
 }

@@ -10,29 +10,20 @@ import SwiftData
 
 
 struct ExerciseSettings: View {
+    @AppStorage("planning") private var planning = false
     @Bindable var exercise: Exercise
     
     var body: some View {
         HStack{
             VStack{
-                Text("Plan:")
+                Text("Settings").font(.title)
+                Form{
+                    Toggle("Plan:", isOn: $planning)
+                    Stepper(value: $exercise.stepSize, label: {
+                        Text("Weight Steps: \(exercise.stepSize)")
+                    })
+                }
             }
-            
-            Text("Weight step size: ")
-            ControlGroup(content: {
-                let numberFormatter: NumberFormatter = {
-                    let nf = NumberFormatter()
-                    nf.numberStyle = .decimal
-                    return nf
-                }()
-                Button("+"){
-                    exercise.stepSize += 1
-                }
-                TextField("", value: $exercise.stepSize,formatter: numberFormatter)
-                Button("-"){
-                    exercise.stepSize -= 1
-                }
-            })
             
         }
     }

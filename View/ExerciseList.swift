@@ -10,11 +10,10 @@ import SwiftData
 struct ExerciseList: View {
     
     var day: Day
-    @State private var name: String = "myName"
     @State private var present: Bool = false
     @Environment(\.modelContext) private var modelContext
     var openExercises: [Exercise] {return allExercises}
-    @State private var textField = ""
+    @State private var textField = "New exercise name"
     @Query(sort: \Exercise.name) var allExercises: [Exercise]
     
     var body: some View {
@@ -30,6 +29,7 @@ struct ExerciseList: View {
             }
             ForEach(day.exercises){ exercise in
                 NavigationLink(exercise.surject!.name, destination: ExerciseEditor(dayExercise: exercise))
+                .foregroundColor(exercise.planedExercises == true ? .orange : .primary)
             }
             .onDelete(perform: { indexSet in
                 for index in indexSet {

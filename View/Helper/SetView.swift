@@ -12,45 +12,43 @@ import SwiftUI
 struct SetView: View {
     @Bindable var set: DaySet
     @State var viewToggle: Bool
+    @State var maxEffort: (reps: Int,weight: Int) = (0,0)
     
     var body: some View {
         let exercise: Exercise? = set.exercise
         
-        let repMax = exercise?.maxReps(weight: set.weight, exclude: [set])
-        let weightMax = exercise?.maxWeight(reps: set.reps, exclude: [set])
-        
-        let hstack = HStack{
+        HStack{
             if viewToggle == true {
                 VStack{
                     Text("Reps:")
                     Picker("Reps",selection: $set.reps) {
                         ForEach(1..<21){i in
-                            if (i > repMax ?? 0){
-                                Text(i.formatted()).tag(i).foregroundStyle(.red)
-                            }else{
                                 Text(i.formatted()).tag(i)
-                            }
+                                .foregroundStyle(i > maxEffort.reps ? .red : .black)
                         }
                     }
                     .frame(height: 100)
                     .frame(height: 100)
                     .pickerStyle(.wheel)
+                }
+                .onChange(of: set.reps, initial: true) {
+                    maxEffort = exercise?.maxEffort(reps: set.reps, weight: set.weight, exclude: [set]) ?? (0,0)
                 }
                 VStack{
                     Text("Weight:")
                     Picker(selection: $set.weight, label: Text("Weight")) {
-                        ForEach(1..<200){i in
+                        ForEach(1..<100){i in
                             let f = i * (exercise?.stepSize ?? 1)
-                            if (f > weightMax ?? 0){
-                                Text(f.formatted()).tag(f).foregroundStyle(.red)
-                            }else{
-                                Text(f.formatted()).tag(f)
-                            }
+                            Text(f.formatted()).tag(f)
+                                .foregroundStyle(f > maxEffort.weight  ? .red : .black)
                         }
                     }
                     .frame(height: 100)
                     .pickerStyle(.wheel)
                 }
+                .onChange(of: set.weight, {
+                    maxEffort = exercise?.maxEffort(reps: set.reps, weight: set.weight, exclude: [set]) ?? (0,0)
+                })
                 
             } else {
                     Text("Reps:")
@@ -59,12 +57,7 @@ struct SetView: View {
                     Text(set.weight.formatted())
             }
         }
-        if set.planned == true{
-            hstack.foregroundStyle(Color.orange)
-        }
-        else {
-            hstack
-        }
+        .foregroundStyle(set.planned == true ? Color.orange : Color.primary)
     }
 }
 

@@ -18,8 +18,7 @@ struct JornalList: View {
     @Query(sort: \Day.date, order: .reverse) var days: [Day]
     @Environment(\.modelContext) private var modelContext
     @Query var data: [DaySet]
-    private var mydocument: URL { exportJSON(mydata: data, context: modelContext)}
-    
+    @State private var mydocument: URL = URL(fileURLWithPath: "")
     
     var body: some View {
         NavigationSplitView {
@@ -54,7 +53,11 @@ struct JornalList: View {
                         modelContext.delete(itemToDelete)
                     }
                 })
+                Button("testData"){
+                    loadOld(context: modelContext)
+                }
                 Button("export"){
+                    mydocument = exportJSON(mydata: data, context: modelContext)
                     fileExport.toggle()
                     
                 }

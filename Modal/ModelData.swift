@@ -8,9 +8,10 @@
 import Foundation
 import SwiftData
 
+
 @Model
 final class Day {
-    @Attribute(.unique) 
+    @Attribute(.unique)
     let date: Date
     @Relationship(deleteRule: .cascade)
     var exercises: [DayExercise] = [DayExercise]()
@@ -18,9 +19,7 @@ final class Day {
     
  
     init(date: Date) {
-        let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day], from: date)
-        self.date = calendar.date(from: components)!
+        self.date = calenderDate(date)
     }
     
     
@@ -45,7 +44,13 @@ final class DayExercise {
     var surject: Exercise?
     @Relationship(deleteRule: .cascade)
     var sets: [DaySet] = [DaySet]()
-    var sortedSets: [DaySet] {sets.sorted(by: {$0.sort > $1.sort})}
+    var sortedSets: [DaySet] {sets.sorted(by: {$0.sort < $1.sort})}
+    var planedExercises: Bool {
+        guard let _ = sets.first(where: {$0.planned == true}) else {
+            return false
+        }
+        return true
+    }
     
     
     init(day: Day, exercise: Exercise) {
@@ -61,9 +66,10 @@ final class DayExercise {
 final class  DaySet{
     var weight: Int
     var reps: Int
+    @Attribute(.unique) 
     var sort: Double
     var day: Day?
-    var planned = false
+    var planned: Bool
     var dayExercise: DayExercise?
     var exercise: Exercise?
     var date: Date {return day!.date }
@@ -72,10 +78,10 @@ final class  DaySet{
     init(weight: Int, reps: Int, day: Day, dayExercise: DayExercise, planned: Bool) {
         self.weight = weight
         self.reps = reps
+        self.planned = planned
         self.sort = Date().timeIntervalSince1970
         self.day = day
         self.dayExercise = dayExercise
-        //self.planned = planned
         self.exercise = dayExercise.surject!
         dayExercise.sets.append(self)
         dayExercise.surject!.sets.append(self)

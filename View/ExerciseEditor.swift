@@ -12,26 +12,26 @@ struct ExerciseEditor: View {
     var dayExercise: DayExercise
     @Environment(\.modelContext) private var modelContext
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
-    @State private var showChart = false
-    @State private var showSettings = false
-    @State private var detent: PresentationDetent = .fraction(0.3)
-    @State private var selected = -1
+    @AppStorage("planning") private var planning = false
+    @State private var sheetContent: SheetContent = .none
+    @State private var disclosIndex = -1
     
     var body: some View {
+        let sortedSets = dayExercise.sortedSets
         VStack{
             List {
-                ForEach(dayExercise.sortedSets){seti in
+                ForEach(sortedSets, id: \.id){seti in
                     let index:Int = dayExercise.sets.firstIndex(of: seti)!
                     let binding = Binding<Bool>(
-                        get: {selected == index},
-                        set: {v in selected = index
+                        get: {disclosIndex == index},
+                        set: {v in
+                            disclosIndex = index
                             if (v == false)
-                            { selected = -1}
+                            { disclosIndex = -1}
                         })
-                    #if os(macOS)
-                        SetView(set: seti, viewToggle: true)
-                    
-                    #else
+#if os(macOS)
+                    SetView(set: seti, viewToggle: true)
+#else
                     DisclosureGroup(isExpanded: binding, content: {
                         SetView(set: seti, viewToggle: true)
                     }, label: {
@@ -49,54 +49,79 @@ struct ExerciseEditor: View {
                             }
                         }
                     })
-                    #endif
+#endif
                 }
+                .onMove(perform: { indices, newOffset in
+                    let buffer = sortedSets.map{$0.sort+1/10000}
+                    var buff2 = sortedSets
+                    buff2.move(fromOffsets: indices, toOffset: newOffset)
+                    buffer.enumerated().forEach{buff2[$0.offset].sort = $0.element}
+                })
                 .onDelete(perform: { indexSet in
                     for index in indexSet {
-                        let item = dayExercise.sortedSets[index]
+                        let item = sortedSets[index]
                         modelContext.delete(item)
+                        dayExercise.sets.removeAll(where: {$0 == item})
                     }
                 })
-                .onMove {
-                    dayExercise.sets.move(fromOffsets: $0, toOffset: $1)
-                }
-                .animation(.easeInOut, value: dayExercise.sortedSets.hashValue)
             }
             .navigationTitle(dayExercise.surject!.name)
             .toolbar(content: {
                 ToolbarItemGroup(placement: .automatic) {
                     Button("Settings",systemImage: "gear") {
-                        showSettings.toggle()
+                        sheetContent = .settings
                     }
                     Button("Chart",systemImage: "chart.xyaxis.line") {
-                        showChart.toggle()
+                        sheetContent = .chart
                     }
                     Button("Add", systemImage: "plus") {
-                        _ = DaySet(
+                        let new = DaySet(
                             weight:  dayExercise.surject?.lastInit?.weight ?? 1,
                             reps: dayExercise.surject?.lastInit?.reps ?? 1 ,
                             day: dayExercise.day!,
                             dayExercise: dayExercise,
-                            planned: false
+                            planned: planning
                         )
-                        clameDB(context: modelContext)
-                        print("daySetcount"+dayExercise.sets.count.formatted())
+                        modelContext.insert(new)
                     }.buttonStyle(.automatic)
                 }
             })
             if horizontalSizeClass != .compact {
-                    ChartView(exercise: dayExercise.surject!)
+                ChartView(exercise: dayExercise)
             }
         }
         .frame(maxHeight: .infinity)
-            .sheet(isPresented: $showChart, content: {
-                ChartView(exercise: dayExercise.surject!)
-                    .presentationDetents([.medium,.fraction(0.3),.large])
+        .sheet(isPresented: Binding<Bool>(get: {
+            sheetContent == .chart
+        }, set: {
+            if $0 == false {
+                sheetContent = .none
+            } else {
+                sheetContent = .chart
+            }
+        })
+               , content: {
+                ChartView(exercise: dayExercise)
+                .presentationDetents([.medium,.fraction(0.3),.large])
                 .presentationBackgroundInteraction(.enabled(upThrough: .medium))
-            })
-            .sheet(isPresented: $showSettings, content: {
-                ExerciseSettings(exercise: dayExercise.surject!).presentationDetents([.medium,.fraction(0.3),.large])
+        })
+        .sheet(isPresented: Binding<Bool>(get: {
+            sheetContent == .settings
+        }, set: {
+            if $0 == false {
+                sheetContent = .none
+            } else {
+                sheetContent = .settings
+            }
+        })
+               , content: {
+            ExerciseSettings(exercise: dayExercise.surject!).presentationDetents([.medium,.fraction(0.3),.large])
                 .presentationBackgroundInteraction(.enabled(upThrough: .medium))
-            })
+        })
     }
+    
+    enum SheetContent {
+        case chart,settings,none
+    }
+    
 }
