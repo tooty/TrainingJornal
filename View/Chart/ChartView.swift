@@ -28,6 +28,13 @@ struct ChartView: View {
             .pickerStyle(.segmented)
             
             Chart {
+                    ForEach(chartViewModel.plotData["test"] ?? [], id: \.x) { item in
+                        LineMark(
+                            x: .value("Date", item.x, unit: .day),
+                            y: .value("Weight", item.y)
+                        )
+                        .foregroundStyle(.green.gradient)
+                    }
                 if (oneRm){
                     ForEach(chartViewModel.plotData["oneRMax"] ?? [], id: \.x) { item in
                         AreaMark(
@@ -84,11 +91,6 @@ struct ChartView: View {
                     RuleMark (
                         x: .value("date", calenderDate)
                     )
-                    .annotation (position: .automatic, alignment: .center, content: {
-                        let sets = chartViewModel.plotData["allsets"]!.filter{$0.x == calenderDate}
-                        let string: String = sets.reduce("",{$0 + $1.y.formatted()+"x" + $1.z!.formatted() })
-                        Text(selectedDate!.formatted())
-                    })
                 }
             }
         }

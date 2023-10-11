@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 import CoreML
-//import CreateML
+import CreateML
 import TabularData
 import Observation
 
@@ -88,6 +88,10 @@ import Observation
             
             oneRMax = dateSet.map { self.reduceMax($0, oneR) }
             
+            let oneJearInterval:TimeInterval = 60*60*24*365
+            let inOneJear = oneR.last!.x.addingTimeInterval(oneJearInterval)
+            let result = self.genLin(oneR: oneRMax, predicion: inOneJear)
+            
             DispatchQueue.main.async {
                 if planned == true {
                     self.plotData["oneRMaxP"] = oneRMax
@@ -95,6 +99,7 @@ import Observation
                     self.plotData["volumeP"] = volume
                     self.plotData["allsetsP"] = allsets
                 } else {
+                    self.plotData["test"] = result
                     self.domain = Int(dateSet.last!.timeIntervalSince1970 - dateSet.first!.timeIntervalSince1970)
                     self.plotData["oneRMax"] = oneRMax
                     self.plotData["oneR"] = oneR
@@ -118,13 +123,24 @@ import Observation
             return ret
         }
         
-        func genLin(oneR: [PlotData]){
+    func genLin(oneR: [PlotData], predicion: Date) -> [PlotData]  {
             let dataFrame: DataFrame = ["Date": oneR.map{$0.x.timeIntervalSince1970},
                                         "oneR": oneR.map{Double($0.y)}]
-            //print(dataFrame)
-            //let modelParameters = MLLinearRegressor.ModelParameters(featureRescaling: false)
-            //let model = try? MLLinearRegressor(trainingData: dataFrame,  targetColumn: "oneR", featureColumns: ["Date"], parameters: modelParameters)
-            //   print (try! model!.modelParameters)
+            let modelParameters = MLLinearRegressor.ModelParameters()
+            guard let model = try? MLLinearRegressor(trainingData: dataFrame,  targetColumn: "oneR", featureColumns: ["Date"], parameters: modelParameters) else {
+                return oneR
+            }
+            print (model.modelParameters)
+        print(predicion.formatted())
+        let predFrame: DataFrame = ["Date": oneR.map{$0.x.timeIntervalSince1970}]
+        let result = try! model.predictions(from: predFrame)
+        print(result)
+        let double: [Float16] = result.map({Float16($0 as! Double)})
+        var ret = [PlotData]()
+        for i in oneR.enumerated(){
+            ret.append(PlotData(x:i.element.x, y: double[i.offset]))
+        }
+        return ret
         }
     }
     
