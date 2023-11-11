@@ -19,7 +19,7 @@ struct ChartView: View {
     @Environment(ChartViewModel.self) private var chartViewModel
     
     var body: some View {
-        GroupBox {
+        GroupBox ("Steigerung pro Monat \(chartViewModel.slope?.formatted() ?? "")"){
             Picker("Scope", selection: $visibleDomain, content: {
                 Text("Week").tag(Scope.Week)
                 Text("Month").tag(Scope.Month)
@@ -31,7 +31,7 @@ struct ChartView: View {
                     ForEach(chartViewModel.plotData["test"] ?? [], id: \.x) { item in
                         LineMark(
                             x: .value("Date", item.x, unit: .day),
-                            y: .value("Weight", item.y)
+                            y: .value("Weight", item.y.value)
                         )
                         .foregroundStyle(.green.gradient)
                     }
@@ -39,7 +39,7 @@ struct ChartView: View {
                     ForEach(chartViewModel.plotData["oneRMax"] ?? [], id: \.x) { item in
                         AreaMark(
                             x: .value("Date", item.x, unit: .day),
-                            y: .value("Weight", item.y)
+                            y: .value("Weight", item.y.value)
                         )
                         .interpolationMethod(.monotone)
                         .foregroundStyle(.red.gradient)
@@ -50,7 +50,7 @@ struct ChartView: View {
                     ForEach(chartViewModel.plotData["volume"] ?? [], id: \.x) { item in
                         BarMark(
                             x: .value("Date", item.x),
-                            y: .value("Volume", item.y)
+                            y: .value("Volume", item.y.value)
                         )
                         .foregroundStyle(.teal)
                     }
@@ -59,7 +59,7 @@ struct ChartView: View {
                     ForEach(chartViewModel.plotData["allsets"] ?? [], id: \.x) { item in
                         PointMark(
                             x: .value("Date", item.x),
-                            y: .value("Weight",item.y)
+                            y: .value("Weight",item.y.value)
                         )
                         .opacity(1)
                         .symbolSize(Double(item.z! * 30))
@@ -70,7 +70,7 @@ struct ChartView: View {
                     ForEach(chartViewModel.plotData["oneRP"] ?? [], id: \.x) { item in
                         PointMark(
                             x: .value("Date", item.x),
-                            y: .value("Weight", item.y)
+                            y: .value("Weight", item.y.value)
                         )
                         .foregroundStyle(.yellow)
                         .symbolSize(Double(item.z ?? 0))
@@ -81,7 +81,7 @@ struct ChartView: View {
                     ForEach(chartViewModel.plotData["volumeP"] ?? [], id: \.x) { item in
                         BarMark(
                             x: .value("Date", item.x),
-                            y: .value("Volume", item.y)
+                            y: .value("Volume", item.y.value)
                         )
                         .foregroundStyle(.yellow)
                     }
@@ -91,10 +91,21 @@ struct ChartView: View {
                     RuleMark (
                         x: .value("date", calenderDate)
                     )
+                    .annotation(position: .leading, alignment: .top, spacing: 0){
+                        VStack{
+                            Text(calenderDate.formatted())
+                            let sets: [PlotData] = chartViewModel.plotData["allsets"]?.filter{
+                                $0.x == calenderDate
+                            } ?? []
+                            ForEach(sets, id: \.x) { set in
+                                Text(set.z!.formatted() + "x" + set.y.description)
+                            }
+                        }
+                    }
                 }
             }
         }
-        .chartXVisibleDomain(length: visibleDomain.length ?? chartViewModel.domain)
+        //.chartXVisibleDomain(length: visibleDomain.length ?? chartViewModel.domain)
         .chartScrollableAxes(.horizontal)
         .chartXSelection(value: $selectedDate)
         .chartYAxis {
@@ -118,8 +129,6 @@ struct ChartView: View {
     }
 }
 
-
-
 enum Scope: String, CaseIterable, Identifiable {
     case Week,Month,All
     var id: Self { self }
@@ -136,4 +145,19 @@ extension Scope {
             return nil
         }
     }
+}
+
+struct ChartViewPreview: View {
+    @Query() var dayExercises: [DayExercise]
+    @State private var chartViewModel = ChartViewModel()
+    
+    var body: some View {
+        ChartView(exercise: dayExercises.first{$0.surject?.name == "Lat Zug"}!)
+                .environment(chartViewModel)
+    }
+}
+
+#Preview {
+    ChartViewPreview()
+        .modelContainer(getPreviewContainer())
 }

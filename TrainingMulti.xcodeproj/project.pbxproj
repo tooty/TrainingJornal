@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92215AF2AD7E38800DB4339 /* TrainingMultiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92215AE2AD7E38800DB4339 /* TrainingMultiTests.swift */; };
 		E94BC7EC2AA9B3AC00F29DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94BC7EB2AA9B3AC00F29DB3 /* Assets.xcassets */; };
 		E94BC7F02AA9B3AC00F29DB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E94BC7EF2AA9B3AC00F29DB3 /* Preview Assets.xcassets */; };
 		E95D01062AAAF64D0061E962 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95D01042AAAF64D0061E962 /* ModelData.swift */; };
@@ -24,7 +25,19 @@
 		E9D12C1F2AAB61D200FEAD95 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = E9D12C1E2AAB61D200FEAD95 /* data.json */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E92215B02AD7E38800DB4339 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E94BC7DC2AA9B3AB00F29DB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E94BC7E32AA9B3AB00F29DB3;
+			remoteInfo = TrainingMulti;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		E92215AC2AD7E38800DB4339 /* TrainingMultiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TrainingMultiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E92215AE2AD7E38800DB4339 /* TrainingMultiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingMultiTests.swift; sourceTree = "<group>"; };
 		E94BC7E42AA9B3AB00F29DB3 /* TrainingMulti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainingMulti.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94BC7EB2AA9B3AC00F29DB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E94BC7ED2AA9B3AC00F29DB3 /* TrainingMulti.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrainingMulti.entitlements; sourceTree = "<group>"; };
@@ -47,6 +60,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E92215A92AD7E38800DB4339 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E94BC7E12AA9B3AB00F29DB3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E92215AD2AD7E38800DB4339 /* TrainingMultiTests */ = {
+			isa = PBXGroup;
+			children = (
+				E92215AE2AD7E38800DB4339 /* TrainingMultiTests.swift */,
+			);
+			path = TrainingMultiTests;
+			sourceTree = "<group>";
+		};
 		E94BC7DB2AA9B3AB00F29DB3 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +92,7 @@
 				E9A28F8B2AB1825F00DBA69B /* ViewModel */,
 				E95D01022AAAF64D0061E962 /* Modal */,
 				E94BC7E62AA9B3AB00F29DB3 /* TrainingMulti */,
+				E92215AD2AD7E38800DB4339 /* TrainingMultiTests */,
 				E94BC7E52AA9B3AB00F29DB3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				E94BC7E42AA9B3AB00F29DB3 /* TrainingMulti.app */,
+				E92215AC2AD7E38800DB4339 /* TrainingMultiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -149,6 +179,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E92215AB2AD7E38800DB4339 /* TrainingMultiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E92215B22AD7E38800DB4339 /* Build configuration list for PBXNativeTarget "TrainingMultiTests" */;
+			buildPhases = (
+				E92215A82AD7E38800DB4339 /* Sources */,
+				E92215A92AD7E38800DB4339 /* Frameworks */,
+				E92215AA2AD7E38800DB4339 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E92215B12AD7E38800DB4339 /* PBXTargetDependency */,
+			);
+			name = TrainingMultiTests;
+			productName = TrainingMultiTests;
+			productReference = E92215AC2AD7E38800DB4339 /* TrainingMultiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E94BC7E32AA9B3AB00F29DB3 /* TrainingMulti */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E94BC7F32AA9B3AC00F29DB3 /* Build configuration list for PBXNativeTarget "TrainingMulti" */;
@@ -176,6 +224,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					E92215AB2AD7E38800DB4339 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = E94BC7E32AA9B3AB00F29DB3;
+					};
 					E94BC7E32AA9B3AB00F29DB3 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -195,11 +247,19 @@
 			projectRoot = "";
 			targets = (
 				E94BC7E32AA9B3AB00F29DB3 /* TrainingMulti */,
+				E92215AB2AD7E38800DB4339 /* TrainingMultiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E92215AA2AD7E38800DB4339 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E94BC7E22AA9B3AB00F29DB3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,6 +273,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E92215A82AD7E38800DB4339 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E92215AF2AD7E38800DB4339 /* TrainingMultiTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E94BC7E02AA9B3AB00F29DB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -234,7 +302,61 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E92215B12AD7E38800DB4339 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E94BC7E32AA9B3AB00F29DB3 /* TrainingMulti */;
+			targetProxy = E92215B02AD7E38800DB4339 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		E92215B32AD7E38800DB4339 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 27F6M8X5QP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tt.TrainingMultiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrainingMulti.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TrainingMulti";
+			};
+			name = Debug;
+		};
+		E92215B42AD7E38800DB4339 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 27F6M8X5QP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tt.TrainingMultiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TrainingMulti.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TrainingMulti";
+			};
+			name = Release;
+		};
 		E94BC7F12AA9B3AC00F29DB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -359,7 +481,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TrainingMulti/TrainingMultiDebug.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrainingMulti/Preview Content\"";
@@ -385,6 +508,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tt.TrainingMulti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -399,7 +523,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = TrainingMulti/TrainingMulti.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrainingMulti/Preview Content\"";
@@ -425,6 +550,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = tt.TrainingMulti;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -436,6 +562,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E92215B22AD7E38800DB4339 /* Build configuration list for PBXNativeTarget "TrainingMultiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E92215B32AD7E38800DB4339 /* Debug */,
+				E92215B42AD7E38800DB4339 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E94BC7DF2AA9B3AB00F29DB3 /* Build configuration list for PBXProject "TrainingMulti" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

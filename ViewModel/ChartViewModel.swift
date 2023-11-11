@@ -6,17 +6,14 @@
 //
 
 import Foundation
-import SwiftData
-import CoreML
-import CreateML
-import TabularData
 import Observation
+import Accelerate
 
 @Observable class ChartViewModel: Identifiable {
     var exercise: DayExercise?
     var plotData: [String: [PlotData]] = [:]
-    var domain: Int = 100000
-  
+    var slope: Measurement<UnitMass>?
+    
     init() {
     }
     
@@ -32,7 +29,8 @@ import Observation
     
     func generateOneR(sets: [PlotData]) -> [PlotData] {
         var oneR: [PlotData] = sets.map{ set in
-            let y = Float16(set.y) / (1.0278 - 0.0278 * Float16(set.z!))
+            let oneR = Double(set.y.value / Double((1.0278 - 0.0278 * set.z!)))
+            let y = Measurement<UnitMass>(value: oneR, unit: .kilograms)
             return PlotData(x: set.x, y: y)
         }
         oneR = oneR.sorted(by: {(a,b)in
@@ -42,13 +40,17 @@ import Observation
     }
     
     func generateSets(planned: Bool) -> [PlotData] {
-        guard exercise != nil else {
+        guard let exercise else {
             print ("useless executio of func generateSets")
             return []
         }
-        let sets = exercise!.surject!.sets.filter{$0.planned == planned}
+        guard let allsets = exercise.surject?.sets else {
+            print ("useless executio of func generateSets")
+            return []
+        }
+        let sets = allsets.filter{$0.planned == planned}
         var ret = sets.map{ set in
-            return PlotData(x: set.day!.date, y: Float16(set.weight), z: Float16(set.reps))
+            return PlotData(x: set.day!.date, y: Measurement<UnitMass>(value: Double(set.weight),  unit: .kilograms), z: Float16(set.reps))
         }
         ret = ret.sorted(by: {(a,b)in
             a.x <= b.x
@@ -59,14 +61,14 @@ import Observation
     
     func generateVolume(allsets: [PlotData],dateSet: Array<Date>) -> [PlotData]{
         var volume: [PlotData] = allsets.map{set in
-            return PlotData(x: set.x, y: Float16(set.y * set.z!))}
+            return PlotData(x: set.x, y: Measurement<UnitMass>(value: Double(set.y.value * Double(set.z!)), unit: .kilograms))
+        }
         
         volume = dateSet.map{buildSum($0,volume)}
         return volume
     }
     
     func generatePlotData(planned: Bool) {
-
         let queue = DispatchQueue.global(qos: .userInteractive)
         queue.async {
             let allsets = self.generateSets(planned: planned)
@@ -88,10 +90,6 @@ import Observation
             
             oneRMax = dateSet.map { self.reduceMax($0, oneR) }
             
-            let oneJearInterval:TimeInterval = 60*60*24*365
-            let inOneJear = oneR.last!.x.addingTimeInterval(oneJearInterval)
-            let result = self.genLin(oneR: oneRMax, predicion: inOneJear)
-            
             DispatchQueue.main.async {
                 if planned == true {
                     self.plotData["oneRMaxP"] = oneRMax
@@ -99,64 +97,96 @@ import Observation
                     self.plotData["volumeP"] = volume
                     self.plotData["allsetsP"] = allsets
                 } else {
-                    self.plotData["test"] = result
-                    self.domain = Int(dateSet.last!.timeIntervalSince1970 - dateSet.first!.timeIntervalSince1970)
                     self.plotData["oneRMax"] = oneRMax
                     self.plotData["oneR"] = oneR
                     self.plotData["volume"] = volume
                     self.plotData["allsets"] = allsets
+                    self.slope = Measurement<UnitMass>(value: self.genLin(oneRMax: oneRMax)[1], unit: .kilograms)
                 }
             }
         }
     }
-        
-        func buildSum(_ day: Date,_ data: [PlotData]) -> PlotData{
-            let sets: [PlotData] = data.filter{$0.x == day}
-            var sum = sets.reduce(0) {$0 + $1.y}
-            sum = sum/50
-            return PlotData(x:day,y:sum)
-        }
-        
-        func reduceMax(_ day: Date,_ data: [PlotData]) -> PlotData{
-            let sets: [PlotData] = data.filter{$0.x == day}
-            let ret = sets.max{(a,b) in a.y<b.y}!
-            return ret
-        }
-        
-    func genLin(oneR: [PlotData], predicion: Date) -> [PlotData]  {
-            let dataFrame: DataFrame = ["Date": oneR.map{$0.x.timeIntervalSince1970},
-                                        "oneR": oneR.map{Double($0.y)}]
-            let modelParameters = MLLinearRegressor.ModelParameters()
-            guard let model = try? MLLinearRegressor(trainingData: dataFrame,  targetColumn: "oneR", featureColumns: ["Date"], parameters: modelParameters) else {
-                return oneR
-            }
-            print (model.modelParameters)
-        print(predicion.formatted())
-        let predFrame: DataFrame = ["Date": oneR.map{$0.x.timeIntervalSince1970}]
-        let result = try! model.predictions(from: predFrame)
-        print(result)
-        let double: [Float16] = result.map({Float16($0 as! Double)})
-        var ret = [PlotData]()
-        for i in oneR.enumerated(){
-            ret.append(PlotData(x:i.element.x, y: double[i.offset]))
-        }
-        return ret
-        }
+    
+    func buildSum(_ day: Date,_ data: [PlotData]) -> PlotData{
+        let sets: [PlotData] = data.filter{$0.x == day}
+        var sum = sets.reduce(Measurement<UnitMass>(value: 0, unit: .kilograms)) {Measurement<UnitMass>(value: $0.value + $1.y.value, unit: .kilograms)}
+        sum = sum/50
+        return PlotData(x:day,y:sum)
     }
     
-    extension DaySet {
-        var oneRepMax: Double {
-            return  Double(weight) / (1.0278 - 0.0278 * Double(reps))
+    func reduceMax(_ day: Date,_ data: [PlotData]) -> PlotData{
+        let sets: [PlotData] = data.filter{$0.x == day}
+        let ret = sets.max{(a,b) in a.y<b.y}!
+        return ret
+    }
+    
+    func genLin(oneRMax: [PlotData]) -> [Double] {
+        
+        guard !oneRMax.isEmpty else {
+            return []
         }
         
-        var volume: Int{
-            return  reps * weight
+        var rows = oneRMax.map{_ in Double(1)}
+        var rowIndices = [Int32]()
+        var bValues = [Double]()
+        var parameter: [Double] = [0,0]
+        
+        for i in oneRMax.enumerated() {
+            rows.append(Double((i.element.x.timeIntervalSince1970-Date().timeIntervalSince1970)/(60*60*24*30)))
+            bValues.append(i.element.y.value)
+            rowIndices.append(Int32(i.offset))
         }
+        var columnStarts: [Int] = [0,oneRMax.count,rows.count]
+        for i in oneRMax.enumerated() {
+            rowIndices.append(Int32(i.offset))
+        }
+        let structure: SparseMatrixStructure = rowIndices.withUnsafeMutableBufferPointer { rowIndicesPtr in
+            columnStarts.withUnsafeMutableBufferPointer { columnStartsPtr in
+                let attributes = SparseAttributes_t()
+                
+                return SparseMatrixStructure(
+                    rowCount: Int32(bValues.count),
+                    columnCount: 2,
+                    columnStarts: columnStartsPtr.baseAddress!,
+                    rowIndices: rowIndicesPtr.baseAddress!,
+                    attributes: attributes,
+                    blockSize: 1
+                )
+            }
+        }
+        let b_length = Int32(bValues.count)
+        
+        rows.withUnsafeMutableBufferPointer { APtr in
+            bValues.withUnsafeMutableBufferPointer { bPtr in
+                 parameter.withUnsafeMutableBufferPointer { xPtr in
+                     let a = SparseMatrix_Double(structure: structure, data: APtr.baseAddress!)
+                     let b = DenseVector_Double(count: b_length, data: bPtr.baseAddress!)
+                     let x =  DenseVector_Double(count: 2, data: xPtr.baseAddress!)
+                     let status = SparseSolve(SparseLSMR(), a, b, x, SparsePreconditionerDiagScaling)
+                    
+                    if status != SparseIterativeConverged {
+                        fatalError("Failed to converge. Returned with error \(status).")
+                    }
+                 }
+            }
+        }
+        return parameter
     }
+}
+    
+extension DaySet {
+    var oneRepMax: Double {
+        return  Double(weight) / (1.0278 - 0.0278 * Double(reps))
+    }
+    
+    var volume: Int{
+        return  reps * weight
+    }
+}
     
 struct PlotData {
         var x: Date
-        var y: Float16 = 0
+        var y: Measurement<UnitMass>
         var z: Float16?
     
 }

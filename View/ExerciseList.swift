@@ -58,3 +58,19 @@ struct ExerciseList: View {
         .navigationTitle(day.dateString)
     }
 }
+
+
+struct ExerciseListPreview: View {
+    @State private var chartViewModel = ChartViewModel()
+    @Query(sort: \Day.date, order: .reverse) var days: [Day]
+    
+    var body: some View {
+        ExerciseList(day: days.first!)
+        .environment(chartViewModel)
+    }
+}
+
+#Preview {
+    ExerciseListPreview()
+        .modelContainer(getPreviewContainer())
+}

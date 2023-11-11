@@ -65,7 +65,7 @@ struct JornalList: View {
                     fileImport.toggle()
                 }
                 Button("myShit"){
-                    clameDB(context: modelContext)
+                    _ = clameDB(context: modelContext)
                 }
                 Button("clear"){
                     distDB(context: modelContext)
@@ -134,4 +134,8 @@ struct JornalList: View {
             return try FileWrapper(url: url!)
         }
     }
+}
+
+#Preview {
+    JornalList().modelContainer(getPreviewContainer())
 }

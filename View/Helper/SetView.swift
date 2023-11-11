@@ -7,6 +7,7 @@
 
 #if os(iOS)
 import SwiftUI
+import SwiftData
 
 
 struct SetView: View {
@@ -22,12 +23,11 @@ struct SetView: View {
                 VStack{
                     Text("Reps:")
                     Picker("Reps",selection: $set.reps) {
-                        ForEach(1..<21){i in
-                                Text(i.formatted()).tag(i)
-                                .foregroundStyle(i > maxEffort.reps ? .red : .black)
+                        ForEach(1..<21,id: \.self){i in
+                                Text(i.formatted())
+                                .foregroundStyle(i > maxEffort.reps ? .red : .primary)
                         }
                     }
-                    .frame(height: 100)
                     .frame(height: 100)
                     .pickerStyle(.wheel)
                 }
@@ -40,7 +40,7 @@ struct SetView: View {
                         ForEach(1..<100){i in
                             let f = i * (exercise?.stepSize ?? 1)
                             Text(f.formatted()).tag(f)
-                                .foregroundStyle(f > maxEffort.weight  ? .red : .black)
+                                .foregroundStyle(f > maxEffort.weight  ? .red : .primary)
                         }
                     }
                     .frame(height: 100)
@@ -61,4 +61,18 @@ struct SetView: View {
     }
 }
 
+struct SetViewPreview: View {
+    @Query() var sets: [DaySet]
+    @State private var chartViewModel = ChartViewModel()
+    
+    var body: some View {
+            SetView(set: sets.randomElement()!,viewToggle: true)
+                .environment(chartViewModel)
+    }
+}
+
+#Preview {
+    SetViewPreview()
+        .modelContainer(getPreviewContainer())
+}
 #endif

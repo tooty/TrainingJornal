@@ -39,49 +39,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1051AC48-039E-4E73-B1AF-982F730A694A"
+            uuid = "8B2ADAFC-034D-436F-9E8A-ADD9B04DC042"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ViewModel/ChartViewModel.swift"
+            filePath = "../../../../Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/Headers/Sparse/SolveImplementationTyped.h"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "ChartViewModel"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "1051AC48-039E-4E73-B1AF-982F730A694A - f6c42391bf78474e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TrainingMulti.ChartViewModel.deinit"
-                  moduleName = "TrainingMulti"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thomas/GitRepos/TrainingMulti/ViewModel/ChartViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "1051AC48-039E-4E73-B1AF-982F730A694A - 44e0eb96f08bc553"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TrainingMulti.ChartViewModel.__deallocating_deinit"
-                  moduleName = "TrainingMulti"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thomas/GitRepos/TrainingMulti/ViewModel/ChartViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
+            startingLineNumber = "346"
+            endingLineNumber = "346"
+            landmarkName = "SparseMultiply(alpha, A, X, Y)"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

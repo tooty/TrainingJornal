@@ -125,3 +125,22 @@ struct ExerciseEditor: View {
     }
     
 }
+
+struct ExerciseEditorPreview: View {
+    @Query() var dayExercises: [DayExercise]
+    @State private var chartViewModel = ChartViewModel()
+    
+    var body: some View {
+        NavigationView{
+            NavigationLink("Go"){
+                ExerciseEditor(dayExercise: dayExercises.first!)
+                    .environment(chartViewModel)
+            }
+        }
+    }
+}
+
+#Preview {
+    ExerciseEditorPreview()
+        .modelContainer(getPreviewContainer())
+}
