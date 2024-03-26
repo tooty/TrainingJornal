@@ -33,8 +33,8 @@ final class TrainingMultiTests: XCTestCase {
     
     func testLinearisation() {
         var data = [PlotData]()
-        data.append(PlotData(x: Date(),y: 0))
-        data.append(PlotData(x: Date() + TimeInterval(60*60*24*30) ,y:1))
+        data.append(PlotData(x: Date(),y: Measurement(value: 0.0, unit: UnitMass.kilograms)))
+        data.append(PlotData(x: Date() + TimeInterval(60*60*24*30) ,y: Measurement(value: 0.0, unit: UnitMass.kilograms)))
         XCTAssert(chartViewModel!.genLin(oneRMax: data)[1].rounded() == 1)
         XCTAssert(chartViewModel!.genLin(oneRMax: []).isEmpty)
     }

@@ -12,9 +12,39 @@ import Accelerate
 @Observable class ChartViewModel: Identifiable {
     var exercise: DayExercise?
     var plotData: [String: [PlotData]] = [:]
-    var slope: Measurement<UnitMass>?
+    var scope: Measurement<UnitMass>?
     
     init() {
+    }
+    
+    func getDomain() -> (PlotData,PlotData)? {
+        guard plotData["volume"]?.count ?? 0 > 0 else {
+            return nil
+        }
+        let res = (plotData["volume"]!.first!, plotData["volume"]!.last!)
+        return res
+    }
+    
+    func getAnnotation(date: Date) -> String {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "dd MMMM"
+        var ret = dateFormater.string(from: date)
+        let sets: [PlotData] = plotData["allsets"]?.filter{
+            $0.x == date
+        } ?? []
+        sets.forEach{ set in
+            ret += "\n" + set.z!.formatted() + "x" + set.y.description
+        }
+       return ret
+    }
+    
+    func getDomainSeconds() -> Int {
+        guard let dom = getDomain() else {
+            return 100000
+        }
+        let res1 = dom.1.x.timeIntervalSince(dom.0.x)
+        let res = Int(res1 * 1.02)
+        return res
     }
     
     func update(){
@@ -101,7 +131,7 @@ import Accelerate
                     self.plotData["oneR"] = oneR
                     self.plotData["volume"] = volume
                     self.plotData["allsets"] = allsets
-                    self.slope = Measurement<UnitMass>(value: self.genLin(oneRMax: oneRMax)[1], unit: .kilograms)
+                    self.scope = Measurement<UnitMass>(value: self.genLin(oneRMax: oneRMax)[1], unit: .kilograms)
                 }
             }
         }
@@ -188,5 +218,4 @@ struct PlotData {
         var x: Date
         var y: Measurement<UnitMass>
         var z: Float16?
-    
 }

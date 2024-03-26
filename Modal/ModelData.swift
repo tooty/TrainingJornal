@@ -21,8 +21,6 @@ final class Day {
     init(date: Date) {
         self.date = calenderDate(date)
     }
-    
-    
 }
 
 @Model

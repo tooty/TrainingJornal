@@ -19,10 +19,10 @@ struct ChartView: View {
     @Environment(ChartViewModel.self) private var chartViewModel
     
     var body: some View {
-        GroupBox ("Steigerung pro Monat \(chartViewModel.slope?.formatted() ?? "")"){
+        GroupBox ("Steigerung pro Monat \(chartViewModel.scope?.formatted() ?? "")"){
             Picker("Scope", selection: $visibleDomain, content: {
-                Text("Week").tag(Scope.Week)
                 Text("Month").tag(Scope.Month)
+                Text("3 Month").tag(Scope.ThreeMonth)
                 Text("All").tag(Scope.All)
             })
             .pickerStyle(.segmented)
@@ -92,24 +92,16 @@ struct ChartView: View {
                         x: .value("date", calenderDate)
                     )
                     .annotation(position: .leading, alignment: .top, spacing: 0){
-                        VStack{
-                            Text(calenderDate.formatted())
-                            let sets: [PlotData] = chartViewModel.plotData["allsets"]?.filter{
-                                $0.x == calenderDate
-                            } ?? []
-                            ForEach(sets, id: \.x) { set in
-                                Text(set.z!.formatted() + "x" + set.y.description)
-                            }
-                        }
+                        Text(chartViewModel.getAnnotation(date: calenderDate))
                     }
                 }
             }
         }
-        //.chartXVisibleDomain(length: visibleDomain.length ?? chartViewModel.domain)
+        .chartXVisibleDomain(length: visibleDomain.length ?? chartViewModel.getDomainSeconds())
         .chartScrollableAxes(.horizontal)
+        .chartScrollPosition(initialX: Date.now)
         .chartXSelection(value: $selectedDate)
         .chartYAxis {
-            AxisMarks(position: .leading)
             AxisMarks(position: .trailing)
         }
         
@@ -130,17 +122,17 @@ struct ChartView: View {
 }
 
 enum Scope: String, CaseIterable, Identifiable {
-    case Week,Month,All
+    case Month,ThreeMonth, All
     var id: Self { self }
 }
 
 extension Scope {
     var length : Int? {
         switch self {
-        case .Week:
-            return 7*3600*24
         case .Month:
             return 30*3600*24
+        case .ThreeMonth:
+            return 3*30*3600*24
         case .All:
             return nil
         }
