@@ -17,8 +17,8 @@ struct TrainingApp: App {
         //    ContentView()
         //}
         WindowGroup {
-            JornalList()
-                .modelContainer(for: [Day.self, Exercise.self, DaySet.self, DayExercise.self])
+            Journal()
+                .modelContainer(for: [Segment.self, Day.self, Exercise.self, DaySet.self, DayExercise.self])
                 .environment(chartViewModel)
         }
     }

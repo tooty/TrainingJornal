@@ -100,3 +100,16 @@ func calenderDate(_ date: Date) -> Date {
     let components = calendar.dateComponents([.year, .month, .day], from: date)
     return calendar.date(from: components)!
 }
+
+func getNearestDate(_ date: Date, array: [PlotData]) -> Date {
+    var ret: Date = array[0].x
+    var smalestDif: Double = abs(ret.timeIntervalSince(date))
+    for i in array {
+        let dif = abs(i.x.timeIntervalSince(date))
+        if dif < smalestDif {
+            smalestDif = dif
+            ret = i.x
+        }
+    }
+    return ret
+}

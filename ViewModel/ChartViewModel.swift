@@ -12,7 +12,7 @@ import Accelerate
 @Observable class ChartViewModel: Identifiable {
     var exercise: DayExercise?
     var plotData: [String: [PlotData]] = [:]
-    var scope: Measurement<UnitMass>?
+    var lin: Measurement<UnitMass>?
     
     init() {
     }
@@ -71,11 +71,9 @@ import Accelerate
     
     func generateSets(planned: Bool) -> [PlotData] {
         guard let exercise else {
-            print ("useless executio of func generateSets")
             return []
         }
         guard let allsets = exercise.surject?.sets else {
-            print ("useless executio of func generateSets")
             return []
         }
         let sets = allsets.filter{$0.planned == planned}
@@ -120,6 +118,12 @@ import Accelerate
             
             oneRMax = dateSet.map { self.reduceMax($0, oneR) }
             
+            let lin = self.genLin(oneRMax: oneRMax)
+            var linear = Measurement<UnitMass>(value: 0, unit: .kilograms)
+            if lin.count > 1 {
+                linear = Measurement<UnitMass>(value: self.genLin(oneRMax: oneRMax)[1], unit: .kilograms)
+            }
+            
             DispatchQueue.main.async {
                 if planned == true {
                     self.plotData["oneRMaxP"] = oneRMax
@@ -131,7 +135,7 @@ import Accelerate
                     self.plotData["oneR"] = oneR
                     self.plotData["volume"] = volume
                     self.plotData["allsets"] = allsets
-                    self.scope = Measurement<UnitMass>(value: self.genLin(oneRMax: oneRMax)[1], unit: .kilograms)
+                    self.lin = linear
                 }
             }
         }

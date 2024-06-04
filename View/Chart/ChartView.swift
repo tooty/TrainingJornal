@@ -19,7 +19,7 @@ struct ChartView: View {
     @Environment(ChartViewModel.self) private var chartViewModel
     
     var body: some View {
-        GroupBox ("Steigerung pro Monat \(chartViewModel.scope?.formatted() ?? "")"){
+        GroupBox ("Steigerung pro Monat \(chartViewModel.lin?.formatted() ?? "")"){
             Picker("Scope", selection: $visibleDomain, content: {
                 Text("Month").tag(Scope.Month)
                 Text("3 Month").tag(Scope.ThreeMonth)
@@ -27,82 +27,80 @@ struct ChartView: View {
             })
             .pickerStyle(.segmented)
             
+            if (chartViewModel.plotData["volume"]?.count ?? 0 > 1){
             Chart {
-                    ForEach(chartViewModel.plotData["test"] ?? [], id: \.x) { item in
-                        LineMark(
-                            x: .value("Date", item.x, unit: .day),
-                            y: .value("Weight", item.y.value)
-                        )
-                        .foregroundStyle(.green.gradient)
+                    if (oneRm){
+                        ForEach(chartViewModel.plotData["oneRMax"] ?? [], id: \.x) { item in
+                            AreaMark(
+                                x: .value("Date", item.x, unit: .day),
+                                y: .value("Weight", item.y.value)
+                            )
+                            .interpolationMethod(.monotone)
+                            .foregroundStyle(.red.gradient)
+                            .opacity(0.1)
+                        }
                     }
-                if (oneRm){
-                    ForEach(chartViewModel.plotData["oneRMax"] ?? [], id: \.x) { item in
-                        AreaMark(
-                            x: .value("Date", item.x, unit: .day),
-                            y: .value("Weight", item.y.value)
+                    if (volume){
+                        ForEach(chartViewModel.plotData["volume"] ?? [], id: \.x) { item in
+                            BarMark(
+                                x: .value("Date", item.x),
+                                y: .value("Volume", item.y.value)
+                            )
+                            .foregroundStyle(.teal)
+                        }
+                    }
+                    if (oneR){
+                        ForEach(chartViewModel.plotData["allsets"] ?? [], id: \.x) { item in
+                            PointMark(
+                                x: .value("Date", item.x),
+                                y: .value("Weight",item.y.value)
+                            )
+                            .opacity(1)
+                            .symbolSize(Double(item.z! * 15))
+                            .symbol(Circle().strokeBorder(lineWidth: 0.5))
+                        }
+                    }
+                    if (oneR){
+                        ForEach(chartViewModel.plotData["oneRP"] ?? [], id: \.x) { item in
+                            PointMark(
+                                x: .value("Date", item.x),
+                                y: .value("Weight", item.y.value)
+                            )
+                            .foregroundStyle(.yellow)
+                            .symbolSize(Double(item.z ?? 0))
+                            .symbol(Circle().strokeBorder(lineWidth: 0.5))
+                        }
+                    }
+                    if (volume){
+                        ForEach(chartViewModel.plotData["volumeP"] ?? [], id: \.x) { item in
+                            BarMark(
+                                x: .value("Date", item.x),
+                                y: .value("Volume", item.y.value)
+                            )
+                            .foregroundStyle(.yellow)
+                        }
+                    }
+                    if selectedDate != nil{
+                        let calenderDate = getNearestDate(selectedDate!, array: chartViewModel.plotData["volume"]!)
+                        RuleMark (
+                            x: .value("date", calenderDate)
                         )
-                        .interpolationMethod(.monotone)
-                        .foregroundStyle(.red.gradient)
-                        .opacity(0.1)
+                        .foregroundStyle(.blue.opacity(0.6))
+                        .annotation(position: .leading, alignment: .top, spacing: 0,overflowResolution: .init(x: .fit(to: .chart),y: .disabled)){
+                            RoulerAnnotation(date: calenderDate,plotData: chartViewModel.plotData["allsets"]!)
+                        }
                     }
                 }
-                if (volume){
-                    ForEach(chartViewModel.plotData["volume"] ?? [], id: \.x) { item in
-                        BarMark(
-                            x: .value("Date", item.x),
-                            y: .value("Volume", item.y.value)
-                        )
-                        .foregroundStyle(.teal)
-                    }
+                .chartXVisibleDomain(length: visibleDomain.length ?? chartViewModel.getDomainSeconds())
+                .chartScrollableAxes(.horizontal)
+                .chartScrollPosition(initialX: Date.now)
+                .chartXSelection(value: $selectedDate)
+                .chartYAxis {
+                    AxisMarks(position: .trailing)
                 }
-                if (oneR){
-                    ForEach(chartViewModel.plotData["allsets"] ?? [], id: \.x) { item in
-                        PointMark(
-                            x: .value("Date", item.x),
-                            y: .value("Weight",item.y.value)
-                        )
-                        .opacity(1)
-                        .symbolSize(Double(item.z! * 30))
-                        .symbol(Circle().strokeBorder(lineWidth: 0.5))
-                    }
-                }
-                if (oneR){
-                    ForEach(chartViewModel.plotData["oneRP"] ?? [], id: \.x) { item in
-                        PointMark(
-                            x: .value("Date", item.x),
-                            y: .value("Weight", item.y.value)
-                        )
-                        .foregroundStyle(.yellow)
-                        .symbolSize(Double(item.z ?? 0))
-                        .symbol(Circle().strokeBorder(lineWidth: 0.5))
-                    }
-                }
-                if (volume){
-                    ForEach(chartViewModel.plotData["volumeP"] ?? [], id: \.x) { item in
-                        BarMark(
-                            x: .value("Date", item.x),
-                            y: .value("Volume", item.y.value)
-                        )
-                        .foregroundStyle(.yellow)
-                    }
-                }
-                if selectedDate != nil{
-                    let calenderDate = calenderDate(selectedDate!)
-                    RuleMark (
-                        x: .value("date", calenderDate)
-                    )
-                    .annotation(position: .leading, alignment: .top, spacing: 0){
-                        Text(chartViewModel.getAnnotation(date: calenderDate))
-                    }
-                }
+            } else {
+                Text("Not enough Data")
             }
-        }
-        .chartXVisibleDomain(length: visibleDomain.length ?? chartViewModel.getDomainSeconds())
-        .chartScrollableAxes(.horizontal)
-        .chartScrollPosition(initialX: Date.now)
-        .chartXSelection(value: $selectedDate)
-        .chartYAxis {
-            AxisMarks(position: .trailing)
         }
         
         ControlGroup{
@@ -118,6 +116,46 @@ struct ChartView: View {
             chartViewModel.update()
         }
         )
+    }
+}
+
+struct PredictionMark: ChartContent {
+    var chartViewModel: ChartViewModel
+    var body: some ChartContent {
+        PointMark(
+            x: .value("Date", chartViewModel.plotData["oneRMax"]?.first?.x ?? Date(), unit: .day),
+            y: .value("Weight", chartViewModel.plotData["oneRMax"]?.first?.y.value ?? 0)
+        )
+            .interpolationMethod(.monotone)
+            .foregroundStyle(.green.gradient)
+            .opacity(0.1)
+        let firstDate = chartViewModel.plotData["oneRMax"]?.first?.x.timeIntervalSince(Date()) ?? 0
+        let interpolation = chartViewModel.plotData["oneRMax"]?.first?.y.value ?? 0 * (chartViewModel.lin?.value ?? 0) * (firstDate / (3600 * 24 * 30))
+        PointMark(
+            x: .value("Date", Date(), unit: .day),
+            y: .value("Weight", interpolation)
+        )
+            .interpolationMethod(.monotone)
+            .foregroundStyle(.green)
+    }
+}
+
+struct RoulerAnnotation: View {
+    let date: Date
+    let plotData : [PlotData]
+    let dateFormat = Date.FormatStyle().weekday(.short).day(.twoDigits).month(.twoDigits)
+
+    var body: some View {
+        VStack{
+            Text(date.formatted(dateFormat)).bold()
+            ForEach(plotData.filter{$0.x == date }, id: \.x) { item in
+                Text(" \(item.z?.formatted() ?? "")x\(item.y.formatted())")
+            }
+        }
+            .background {
+                RoundedRectangle(cornerRadius: 4)
+                    .foregroundStyle(Color.secondary.opacity(0.8))
+            }
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  JornalUIView.swift
+//  JournalUIView.swift
 //  Training
 //
 //  Created by Thomas Tichy on 04.09.23.
@@ -9,13 +9,13 @@ import SwiftUI
 import SwiftData
 import UniformTypeIdentifiers
 
-struct JornalList: View {
-    @State private var pickerDate: Date = Date()
+struct Journal: View {
     @State private var pickerDateShow: Bool = false
     @State private var fileExport: Bool = false
     @State private var fileImport: Bool = false
-    
+
     @Query(sort: \Day.date, order: .reverse) var days: [Day]
+    @Query() var segments: [Segment]
     @Environment(\.modelContext) private var modelContext
     @Query var data: [DaySet]
     @State private var mydocument: URL = URL(fileURLWithPath: "")
@@ -24,47 +24,24 @@ struct JornalList: View {
         NavigationSplitView {
             List {
                 if pickerDateShow {
-                    VStack {
-                        DatePicker(
-                            selection: $pickerDate,
-                            displayedComponents: [.date],
-                            label: {
-                            }
-                        )
-#if os(iOS)
-                        .datePickerStyle(.wheel)
-#endif
-                        .labelsHidden()
-                        Button("Add Date"){
-                            let newDate=Day(date: pickerDate)
-                            modelContext.insert(newDate)
-                            pickerDateShow.toggle()
-                            
-                        }
-                        .buttonStyle(.borderedProminent)
+                    AddDay(pickerDateShow: $pickerDateShow)
+                }
+                if segments.isEmpty {
+                    ForEach(days) {day in
+                       NavigationLink(day.dateString,destination: ExerciseList(day:day))
                     }
                 }
-                ForEach(days) {day in
-                    NavigationLink(day.dateString,destination: ExerciseList(day:day))
-                }
-                .onDelete(perform: { indexSet in
-                    for index in indexSet {
-                        let itemToDelete = days[index]
-                        modelContext.delete(itemToDelete)
-                    }
-                })
                 Button("testData"){
                     loadOld(context: modelContext)
                 }
                 Button("export"){
                     mydocument = exportJSON(mydata: data, context: modelContext)
                     fileExport.toggle()
-                    
                 }
                 Button("load"){
                     fileImport.toggle()
                 }
-                Button("myShit"){
+                Button("claim"){
                     _ = clameDB(context: modelContext)
                 }
                 Button("clear"){
@@ -81,7 +58,7 @@ struct JornalList: View {
                     .animation(.easeInOut(duration: TimeInterval(0.1)), value: pickerDateShow)
                 }
             }
-            .navigationTitle("Jornal")
+            .navigationTitle("Journal")
         }content:{
             if days.first != nil {
                 ExerciseList(day: days.first!)
@@ -104,7 +81,9 @@ struct JornalList: View {
     }
     .fileImporter(isPresented: $fileImport, allowedContentTypes: [.json]){ result in
         if case .success =  result{
-            let url = try! result.get()
+            guard let url = try? result.get() else {
+                return
+            }
             _ = url.startAccessingSecurityScopedResource()
             loadOld(context: modelContext,url: url)
             url.stopAccessingSecurityScopedResource()
@@ -137,5 +116,5 @@ struct JornalList: View {
 }
 
 #Preview {
-    JornalList().modelContainer(getPreviewContainer())
+      Journal().modelContainer(getPreviewContainer())
 }

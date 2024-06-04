@@ -24,12 +24,34 @@ final class Day {
 }
 
 @Model
+final class Segment {
+    let name: String
+    let interval: DateInterval
+    init(interval: DateInterval, name: String) {
+        self.interval = interval
+        self.name = name
+    }
+    
+    func overlap(days: [Day]) -> (disjoint: [Day],joined: [Day]) {
+        var disjoint = [Day]()
+        var joined = [Day]()
+        days.forEach{ day in
+            if self.interval.contains(day.date) {
+                joined.append(day)
+            } else {
+                disjoint.append(day)
+            }
+        }
+        return (disjoint,joined)
+    }
+}
+
+@Model
 final class Exercise {
     @Attribute(.unique) var name: String
     var inject: [DayExercise] = [DayExercise]()
     var sets: [DaySet] = [DaySet]()
     var stepSize: Int = 1
-    //var last: (weight: Int, reps: Int)? = (weight:1,reps:1)
     
     init(name: String) {
         self.name = name
