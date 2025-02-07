@@ -8,6 +8,7 @@
 import Foundation
 import Observation
 import Accelerate
+import CoreML
 
 @Observable class ChartViewModel: Identifiable {
     var exercise: DayExercise?
@@ -23,6 +24,16 @@ import Accelerate
         }
         let res = (plotData["volume"]!.first!, plotData["volume"]!.last!)
         return res
+    }
+    
+    func predictOneRMax(){
+        //self.plotData["oneRMax"]
+        do {
+            var model = try PredictOneRMax_2(configuration: .init())
+            //model.prediction(day: reps: 10, exerciseName: exercise?.surject?.name ??"")
+        } catch {
+            return
+        }
     }
     
     func getAnnotation(date: Date) -> String {

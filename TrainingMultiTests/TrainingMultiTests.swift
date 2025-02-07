@@ -24,7 +24,6 @@ final class TrainingMultiTests: XCTestCase {
         }
         let descriptor = FetchDescriptor<DayExercise>()
         let dayExercises = try modelContainer.mainContext.fetch(descriptor)
-        let randomeExercise = dayExercises.first{$0.surject?.name == "Kniebeuge"}
        
         loadOld(context: modelContainer.mainContext)
         chartViewModel = ChartViewModel()
@@ -37,11 +36,5 @@ final class TrainingMultiTests: XCTestCase {
         data.append(PlotData(x: Date() + TimeInterval(60*60*24*30) ,y: Measurement(value: 0.0, unit: UnitMass.kilograms)))
         XCTAssert(chartViewModel!.genLin(oneRMax: data)[1].rounded() == 1)
         XCTAssert(chartViewModel!.genLin(oneRMax: []).isEmpty)
-    }
-    
-    func testTime() {
-        measure{
-            getPreviewContainer()
-        }
     }
 }
